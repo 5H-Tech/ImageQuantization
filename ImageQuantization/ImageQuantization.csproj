@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FastPriorityQueue.cs" />
+    <Compile Include="FastPriorityQueueNode.cs" />
+    <Compile Include="IFixedSizePriorityQueue.cs" />
+    <Compile Include="IPriorityQueue.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

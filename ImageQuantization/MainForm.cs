@@ -35,6 +35,15 @@ namespace ImageQuantization
         {
             double sigma = double.Parse(txtGaussSigma.Text);
             int maskSize = (int)nudMaskSize.Value ;
+            List<int> ListOfDistinctColors= ImageOperations.GetDistinctColors(ImageMatrix);
+            List<Edge> MSTList = ImageOperations.PrimMST(ListOfDistinctColors);
+            float w = 0;
+            //sum all the whaits
+            foreach (var unit in MSTList)
+            {
+                w = w + unit.Weight;
+            }
+            MessageBox.Show("Distinct colors= " + ListOfDistinctColors.Count.ToString() + "\nTotal weight= " + w);
             ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
         }

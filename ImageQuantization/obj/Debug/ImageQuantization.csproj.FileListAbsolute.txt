@@ -30,3 +30,11 @@ D:\University\3ed year\2ed Semester\@Algorithms\Project\[2] Image Quantization\I
 D:\University\3ed year\2ed Semester\@Algorithms\Project\[2] Image Quantization\Image Quantization Startup Code\[TEMPLATE] ImageQuantization\ImageQuantization\obj\Debug\ImageQuantization.MainForm.resources
 D:\University\3ed year\2ed Semester\@Algorithms\Project\[2] Image Quantization\Image Quantization Startup Code\[TEMPLATE] ImageQuantization\ImageQuantization\obj\Debug\ImageQuantization.Properties.Resources.resources
 D:\University\3ed year\2ed Semester\@Algorithms\Project\[2] Image Quantization\Image Quantization Startup Code\[TEMPLATE] ImageQuantization\ImageQuantization\obj\Debug\ImageQuantization.csproj.GenerateResource.Cache
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization\obj\Debug\ImageQuantization.exe
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization\obj\Debug\ImageQuantization.pdb
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization\obj\Debug\ImageQuantization.csprojResolveAssemblyReference.cache
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization\obj\Debug\ImageQuantization.MainForm.resources
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization\obj\Debug\ImageQuantization.Properties.Resources.resources
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization\obj\Debug\ImageQuantization.csproj.GenerateResource.Cache
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization\bin\Debug\ImageQuantization.exe
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization\bin\Debug\ImageQuantization.pdb

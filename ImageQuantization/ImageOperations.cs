@@ -137,11 +137,11 @@ namespace ImageQuantization
 
         public static List<int> GetDistinctColors(RGBPixel[,] ImageMatrix)
         {
-            // in this fuction i used the set to make sure that all the colors is disticet 
-            // but there is a problem i cannot make sure that all the r & g & b is distict at the same time so 
-            // I compresed all the r & g & b of each color into a one integer by represint it in format look like the 
-            // hix format scence the colors r or g or b are intger between  0 -> 255 so take 4 byte each so..
-           
+            // in this fuction i used the set to make sure that all the colors are distinct 
+            // but there is a problem i cannot make sure that all the r, g & b are distict at the same time so 
+            // I compresed all the r & g & b of each color into a one integer by representing it in a format that looks like the 
+            // hex format since the r or g or b colors are integers between  0 -> 255 so take 4 byte each so..
+
             int width = ImageMatrix.GetLength(1);
             int height = ImageMatrix.GetLength(0);
             int r, g, b;
@@ -154,11 +154,11 @@ namespace ImageQuantization
                     r = ImageMatrix[y, x].red;
                     g = ImageMatrix[y, x].green;
                     b = ImageMatrix[y, x].blue;
-                    // the R will be Shifted to the lift by 16 bit ( 8 for G and 8 for B)
-                    // the G will be Shifted to the lift by 8 biy ( 8 for B)
-                    // the B will not shifted since it is the last one
+                    // the R will be Shifted to the left by 16 bits ( 8 for G and 8 for B)
+                    // the G will be Shifted to the left by 8 bits ( 8 for B)
+                    // the B will not be shifted since it is the last one
                     S.Add((r << 16) + (g << 8) + b);
-                    // after this all the color of the set is distict 
+                    // after all of this the color of the set becomes distinct 
 
                 }
             }
@@ -170,7 +170,7 @@ namespace ImageQuantization
             byte red1, red2;
             byte green1, green2;
             byte blue1, blue2;
-            //decrpting the colors form the set before 
+            //decrpting the colors from the set before 
             red1 = (byte)(V1.V >> 16);
             red2 = (byte)(V2.V >> 16);
             green1 = (byte)(V1.V >> 8);

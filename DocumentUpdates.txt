@@ -1,0 +1,4 @@
+Queues Classes + Github links
+https://github.com/BlueRaja/High-Speed-Priority-Queue-for-C-Sharp/wiki/Getting-Started
+Edge & Vertices
+Vertex Parent

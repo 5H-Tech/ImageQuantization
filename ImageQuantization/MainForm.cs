@@ -36,7 +36,7 @@ namespace ImageQuantization
             double sigma = double.Parse(txtGaussSigma.Text);
             int maskSize = (int)nudMaskSize.Value ;
             List<int> ListOfDistinctColors= ImageOperations.GetDistinctColors(ImageMatrix);
-            List<Edge> MSTList = ImageOperations.PrimMST(ListOfDistinctColors);
+            List<Edge> MSTList = ImageOperations.BuildingMST(ListOfDistinctColors);
             float w = 0;
             //sum all the whaits
             foreach (var unit in MSTList)

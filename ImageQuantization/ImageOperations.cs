@@ -179,7 +179,7 @@ namespace ImageQuantization
             blue2 = (byte)(V2.V);
             return (float)Math.Sqrt((red2 - red1) * (red2 - red1) + (green2 - green1) * (green2 - green1) + (blue2 - blue1) * (blue2 - blue1));
         }
-        public static List<Edge> PrimMST(List<int> listOfDisticteColors)
+        public static List<Edge> BuildingMST(List<int> listOfDisticteColors)
         {
             List<Edge> MSTList = new List<Edge>();
             // final list contains the MST 

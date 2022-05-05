@@ -49,3 +49,4 @@ C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization\obj\Debug\I
 C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization\obj\Debug\ImageQuantization.csproj.CoreCompileInputs.cache
 C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization\obj\Debug\ImageQuantization.exe
 C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization\obj\Debug\ImageQuantization.pdb
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization\bin\Debug\ImageQuantization.exe.config

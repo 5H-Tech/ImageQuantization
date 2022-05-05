@@ -23,26 +23,21 @@ namespace ImageQuantization
     {
         public double red, green, blue;
     }
-    public struct  Edge
-    {
-        public int src;      // source node
-        public int dst;      // destination node
-        public float Weight;  // weight of edge
-    }
-    class VertexParent : FastPriorityQueueNode
-    {
-        // 
-        public VertexParent()
-        { }
-        public VertexParent(int vertex, int? parent)
-        {
-            V = vertex;
-            P = parent;
-        }
-        public int V { get; set; }          // current vertix
-        public int? P { get; set; }         // parent vertix
+   
+    //class VertexParent : FastPriorityQueueNode
+    //{
+    //    // 
+    //    public VertexParent()
+    //    { }
+    //    public VertexParent(int vertex, int? parent)
+    //    {
+    //        V = vertex;
+    //        P = parent;
+    //    }
+    //    public int V { get; set; }          // current vertix
+    //    public int? P { get; set; }         // parent vertix
 
-    }
+    //}
     
   
     /// <summary>
@@ -135,96 +130,96 @@ namespace ImageQuantization
             return ImageMatrix.GetLength(1);
         }
 
-        public static List<int> GetDistinctColors(RGBPixel[,] ImageMatrix)
-        {
-            // in this fuction i used the set to make sure that all the colors are distinct 
-            // but there is a problem i cannot make sure that all the r, g & b are distict at the same time so 
-            // I compresed all the r & g & b of each color into a one integer by representing it in a format that looks like the 
-            // hex format since the r or g or b colors are integers between  0 -> 255 so take 4 byte each so..
+        //public static List<int> GetDistinctColors(RGBPixel[,] ImageMatrix)
+        //{
+        //    // in this fuction i used the set to make sure that all the colors are distinct 
+        //    // but there is a problem i cannot make sure that all the r, g & b are distict at the same time so 
+        //    // I compresed all the r & g & b of each color into a one integer by representing it in a format that looks like the 
+        //    // hex format since the r or g or b colors are integers between  0 -> 255 so take 4 byte each so..
 
-            int width = ImageMatrix.GetLength(1);
-            int height = ImageMatrix.GetLength(0);
-            int r, g, b;
-            HashSet<int> S = new HashSet<int>();
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    //Reading the r and g and b from the color 
-                    r = ImageMatrix[y, x].red;
-                    g = ImageMatrix[y, x].green;
-                    b = ImageMatrix[y, x].blue;
-                    // the R will be Shifted to the left by 16 bits ( 8 for G and 8 for B)
-                    // the G will be Shifted to the left by 8 bits ( 8 for B)
-                    // the B will not be shifted since it is the last one
-                    S.Add((r << 16) + (g << 8) + b);
-                    // after all of this the color of the set becomes distinct 
+        //    int width = ImageMatrix.GetLength(1);
+        //    int height = ImageMatrix.GetLength(0);
+        //    int r, g, b;
+        //    HashSet<int> S = new HashSet<int>();
+        //    for (int y = 0; y < height; y++)
+        //    {
+        //        for (int x = 0; x < width; x++)
+        //        {
+        //            //Reading the r and g and b from the color 
+        //            r = ImageMatrix[y, x].red;
+        //            g = ImageMatrix[y, x].green;
+        //            b = ImageMatrix[y, x].blue;
+        //            // the R will be Shifted to the left by 16 bits ( 8 for G and 8 for B)
+        //            // the G will be Shifted to the left by 8 bits ( 8 for B)
+        //            // the B will not be shifted since it is the last one
+        //            S.Add((r << 16) + (g << 8) + b);
+        //            // after all of this the color of the set becomes distinct 
 
-                }
-            }
-            List<int> L = S.ToList();
-            return L;
-        }
-        private static float CalcWeight(VertexParent V1, VertexParent V2)
-        {
-            byte red1, red2;
-            byte green1, green2;
-            byte blue1, blue2;
-            //decrpting the colors from the set before 
-            red1 = (byte)(V1.V >> 16);
-            red2 = (byte)(V2.V >> 16);
-            green1 = (byte)(V1.V >> 8);
-            green2 = (byte)(V2.V >> 8);
-            blue1 = (byte)(V1.V);
-            blue2 = (byte)(V2.V);
-            return (float)Math.Sqrt((red2 - red1) * (red2 - red1) + (green2 - green1) * (green2 - green1) + (blue2 - blue1) * (blue2 - blue1));
-        }
-        public static List<Edge> BuildingMST(List<int> listOfDisticteColors)
-        {
-            List<Edge> MSTList = new List<Edge>();
-            // final list contains the MST 
+        //        }
+        //    }
+        //    List<int> L = S.ToList();
+        //    return L;
+        //}
+        ////private static float CalcWeight(VertexParent V1, VertexParent V2)
+        //{
+        //    byte red1, red2;
+        //    byte green1, green2;
+        //    byte blue1, blue2;
+        //    //decrpting the colors from the set before 
+        //    red1 = (byte)(V1.V >> 16);
+        //    red2 = (byte)(V2.V >> 16);
+        //    green1 = (byte)(V1.V >> 8);
+        //    green2 = (byte)(V2.V >> 8);
+        //    blue1 = (byte)(V1.V);
+        //    blue2 = (byte)(V2.V);
+        //    return (float)Math.Sqrt((red2 - red1) * (red2 - red1) + (green2 - green1) * (green2 - green1) + (blue2 - blue1) * (blue2 - blue1));
+        //}
+        //public static List<Edge> BuildingMST(List<int> listOfDisticteColors)
+        //{
+        //    List<Edge> MSTList = new List<Edge>();
+        //    // final list contains the MST 
 
-            FastPriorityQueue<VertexParent> FP = new FastPriorityQueue<VertexParent>(listOfDisticteColors.Count);
-            // Priority queue sorts the priority of edges' weights each time .
+        //    FastPriorityQueue<VertexParent> FP = new FastPriorityQueue<VertexParent>(listOfDisticteColors.Count);
+        //    // Priority queue sorts the priority of edges' weights each time .
 
-            VertexParent[] VP = new VertexParent[listOfDisticteColors.Count];
-            // array holding each node and it's parent node.
+        //    VertexParent[] VP = new VertexParent[listOfDisticteColors.Count];
+        //    // array holding each node and it's parent node.
 
-            VP[0] = new VertexParent(listOfDisticteColors[0], null); // initializing the first node in the MST.
+        //    VP[0] = new VertexParent(listOfDisticteColors[0], null); // initializing the first node in the MST.
 
-            FP.Enqueue(VP[0], 0);  // inserting the first node into the priority queue.
+        //    FP.Enqueue(VP[0], 0);  // inserting the first node into the priority queue.
 
-            float w;
-            for (int i = 1; i < listOfDisticteColors.Count; i++)
-            {
-                // intializing all the weights with OO value.
-                VP[i] = new VertexParent(listOfDisticteColors[i], null);
-                FP.Enqueue(VP[i], int.MaxValue);
-            }
-            while (FP.Count != 0)
-            {
-                VertexParent Top = FP.Dequeue();   // get the minimum priority 
-                if (Top.P != null)        // if it is not the starting node.
-                {
-                    Edge E;
-                    E.src = Top.V;
-                    E.dst = (int)(Top.P);
-                    E.Weight = (float)(Top.Priority);
-                    MSTList.Add(E);     // add the minimum weight to the MST.
-                }
-                foreach (var unit in FP)     // modify the priority each time .
-                {
-                    w = CalcWeight(unit, Top);  // calculates the weight between the current node and the top node.
-                    if (w < unit.Priority)
-                    {
-                        unit.P = Top.V;
-                        FP.UpdatePriority(unit, w);
-                    }
-                }
-            }
+        //    float w;
+        //    for (int i = 1; i < listOfDisticteColors.Count; i++)
+        //    {
+        //        // intializing all the weights with OO value.
+        //        VP[i] = new VertexParent(listOfDisticteColors[i], null);
+        //        FP.Enqueue(VP[i], int.MaxValue);
+        //    }
+        //    while (FP.Count != 0)
+        //    {
+        //        VertexParent Top = FP.Dequeue();   // get the minimum priority 
+        //        if (Top.P != null)        // if it is not the starting node.
+        //        {
+        //            Edge E;
+        //            E.src = Top.V;
+        //            E.dst = (int)(Top.P);
+        //            E.Weight = (float)(Top.Priority);
+        //            MSTList.Add(E);     // add the minimum weight to the MST.
+        //        }
+        //        foreach (var unit in FP)     // modify the priority each time .
+        //        {
+        //            w = CalcWeight(unit, Top);  // calculates the weight between the current node and the top node.
+        //            if (w < unit.Priority)
+        //            {
+        //                unit.P = Top.V;
+        //                FP.UpdatePriority(unit, w);
+        //            }
+        //        }
+        //    }
 
-            return MSTList;
-        }
+        //    return MSTList;
+        //}
        
 
 

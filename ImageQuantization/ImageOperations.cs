@@ -23,28 +23,114 @@ namespace ImageQuantization
     {
         public double red, green, blue;
     }
-   
-    //class VertexParent : FastPriorityQueueNode
-    //{
-    //    // 
-    //    public VertexParent()
-    //    { }
-    //    public VertexParent(int vertex, int? parent)
-    //    {
-    //        V = vertex;
-    //        P = parent;
-    //    }
-    //    public int V { get; set; }          // current vertix
-    //    public int? P { get; set; }         // parent vertix
 
-    //}
-    
+    class VertexParent : FastPriorityQueueNode
+    {
+        // 
+        public VertexParent()
+        { }
+        public VertexParent(int vertex, int? parent)
+        {
+            V = vertex;
+            P = parent;
+        }
+        public int V { get; set; }          // current vertix
+        public int? P { get; set; }         // parent vertix
+
+    }
+
+   
   
     /// <summary>
     /// Library of static functions that deal with images
     /// </summary>
     public class ImageOperations
     {
+        //========================================================================================
+
+
+        private static float CalcWeight(VertexParent V1, VertexParent V2)
+        {
+            byte red1, red2;
+            byte green1, green2;
+            byte blue1, blue2;
+            red1 = (byte)(V1.V >> 16);
+            red2 = (byte)(V2.V >> 16);
+            green1 = (byte)(V1.V >> 8);
+            green2 = (byte)(V2.V >> 8);
+            blue1 = (byte)(V1.V);
+            blue2 = (byte)(V2.V);
+            return (float)Math.Sqrt((red2 - red1) * (red2 - red1) + (green2 - green1) * (green2 - green1) + (blue2 - blue1) * (blue2 - blue1));
+        }
+
+        public static List<int> GetDistinctPixels(RGBPixel[,] ImageMatrix)
+        {
+            int width = ImageMatrix.GetLength(1);
+            int height = ImageMatrix.GetLength(0);
+            int r, g, b;
+            HashSet<int> S = new HashSet<int>();
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    r = ImageMatrix[y, x].red;
+                    g = ImageMatrix[y, x].green;
+                    b = ImageMatrix[y, x].blue;
+                    S.Add((r << 16) + (g << 8) + b);
+                }
+            }
+            List<int> L = S.ToList();
+            return L;
+        }
+
+        public static List<Edge> PrimMST(List<int> D)
+        {
+            List<Edge> MSTList = new List<Edge>();
+            // final list contains the MST 
+
+            FastPriorityQueue<VertexParent> FP = new FastPriorityQueue<VertexParent>(D.Count);
+            // Priority queue sorts the priority of edges' weights each time .
+
+            VertexParent[] VP = new VertexParent[D.Count];
+            // array holding each node and it's parent node.
+
+            VP[0] = new VertexParent(D[0], null); // initializing the first node in the MST.
+
+            FP.Enqueue(VP[0], 0);  // inserting the first node into the priority queue.
+
+            float w;
+            for (int i = 1; i < D.Count; i++)
+            {
+                // intializing all the weights with OO value.
+                VP[i] = new VertexParent(D[i], null);
+                FP.Enqueue(VP[i], int.MaxValue);
+            }
+            while (FP.Count != 0)
+            {
+                VertexParent Top = FP.Dequeue();   // get the minimum priority 
+                if (Top.P != null)        // if it is not the starting node.
+                {
+                    Edge E;
+                    E.src = Top.V;
+                    E.dst = (int)(Top.P);
+                    E.Weight = (float)(Top.Priority);
+                    MSTList.Add(E);     // add the minimum weight to the MST.
+                }
+                foreach (var unit in FP)     // modify the priority each time .
+                {
+                    w = CalcWeight(unit, Top);  // calculates the weight between the current node and the top node.
+                    if (w < unit.Priority)
+                    {
+                        unit.P = Top.V;
+                        FP.UpdatePriority(unit, w);
+                    }
+                }
+            }
+
+            return MSTList;
+        }
+
+        //-----------------------------------------------------------------------------------------
         /// <summary>
         /// Open an image and load it into 2D array of colors (size: Height x Width)
         /// </summary>

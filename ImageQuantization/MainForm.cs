@@ -34,19 +34,16 @@ namespace ImageQuantization
         private void btnGaussSmooth_Click(object sender, EventArgs e)
         {
             double sigma = double.Parse(txtGaussSigma.Text);
-            int maskSize = (int)nudMaskSize.Value ;
+            int maskSize = (int)nudMaskSize.Value;
+
+            //creating an object form the imge class 
             Image im = new Image(ImageMatrix);
-            List<int> ListOfDistinctColors= im.GetDistinctColors();
-            List<Edge> MSTList = im.BuildingMST(ListOfDistinctColors);
-            float w = 0;
-            //sum all the whaits
-            foreach (var unit in MSTList)
-            {
-                w = w + unit.Weight;
-            }
-            MessageBox.Show("Distinct colors= " + ListOfDistinctColors.Count.ToString() + "\nTotal weight= " +w);
+            MessageBox.Show("Distinct colors= " + im.getDistinctColors() + "\nTotal weight= " + im.getMSTsum());
+            //ImageMatrix = im.Quantize(int.Parse(textBox1.Text));
+
             ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
+            im = null;
         }
 
 

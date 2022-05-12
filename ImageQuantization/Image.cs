@@ -36,6 +36,9 @@ namespace ImageQuantization
     class Image
     {
         RGBPixel[,] aimImage;
+        static Dictionary<Vertex, string> coloredVertices = new Dictionary<Vertex, string>();
+        static Dictionary<Vertex, List<Vertex>> adjacentlist = new Dictionary<Vertex, List<Vertex>>();
+        List<Edge> MSTList = new List<Edge>();
         public Image(RGBPixel[,] ImagePixels)
         {
             aimImage = ImagePixels;
@@ -74,7 +77,7 @@ namespace ImageQuantization
             List<int> L = destincetSet.ToList();
             return L;
         }
-        private double GetWeight(Vertex src, Vertex dst)
+        private double CalculateDistance(Vertex src, Vertex dst)
         {
             double res;
             RGBPixel srcRGB = decodeColors(src.vert);
@@ -87,9 +90,9 @@ namespace ImageQuantization
             res = Math.Sqrt((X * X) + (Y * Y) + (Z * Z));
             return res;
         }
-        public  List<Edge> BuildingMST(List<int> listOfDisticteColors)
+        public void BuildingMST(List<int> listOfDisticteColors)
         {
-            List<Edge> MSTList = new List<Edge>();
+           
             // final list contains the MST 
 
             FastPriorityQueue<Vertex> FP = new FastPriorityQueue<Vertex>(listOfDisticteColors.Count);
@@ -122,7 +125,7 @@ namespace ImageQuantization
                 }
                 foreach (var unit in FP)     // modify the priority each time .
                 {
-                    w = (float) GetWeight(unit, Top);  // calculates the weight between the current node and the top node.
+                    w = (float)CalculateDistance(unit, Top);  // calculates the weight between the current node and the top node.
                     if (w < unit.Priority)
                     {
                         unit.parant = Top.vert;
@@ -130,8 +133,53 @@ namespace ImageQuantization
                     }
                 }
             }
-
+        }
+        public float MSTSum()
+        {
+            float sum = 0;
+            foreach (var edge in MSTList)
+            {
+                sum += edge.Weight;
+            }
+            return sum;
+        }
+        public List<Edge> Clusters(int noOfClusters)
+        {
+            for (int i = MSTList.Count-1; noOfClusters!=0; i--)
+            {
+                MSTList.RemoveAt(i);
+                noOfClusters--;
+            }
             return MSTList;
         }
+        public static void DFS(Vertex[] vertices, List<Edge> MSTedges)
+        {
+            foreach (Vertex v in vertices)
+            {
+                coloredVertices.Add(v, "White");
+                v.parant = null;
+            }
+            foreach (Vertex v in vertices)
+            {
+                if (coloredVertices[v] == "White")
+                {
+                    DFS_Visit(v);
+                }
+            }
+        }
+        public static void DFS_Visit(Vertex v)
+        {
+            coloredVertices[v] = "Gray";
+            foreach (Vertex neighbour in adjacentlist[v])
+            {
+                if (coloredVertices[neighbour] == "White")
+                {
+                    //neighbour.parant = v;
+                    DFS_Visit(v);
+                }
+            }
+            coloredVertices[v] = "Black";    //Explored
+        }
+
     }
 }

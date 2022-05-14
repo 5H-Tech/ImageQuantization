@@ -1,0 +1,34 @@
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.csproj.AssemblyReference.cache
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.MainForm.resources
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.csproj.GenerateResource.cache
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.GeneratedMSBuildEditorConfig.editorconfig
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.AssemblyInfoInputs.cache
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.AssemblyInfo.cs
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.csproj.CoreCompileInputs.cache
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\bin\Debug\net6.0-windows\ImageQuantization.exe
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\bin\Debug\net6.0-windows\ImageQuantization.deps.json
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\bin\Debug\net6.0-windows\ImageQuantization.runtimeconfig.json
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\bin\Debug\net6.0-windows\ImageQuantization.dll
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\bin\Debug\net6.0-windows\ImageQuantization.pdb
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.dll
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\obj\Debug\net6.0-windows\refint\ImageQuantization.dll
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.pdb
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.genruntimeconfig.cache
+D:\University\3ed year\2ed Semester\@Algorithms\ProjectIdea\Ttrryy\ImageQuantization\ImageQuantization\obj\Debug\net6.0-windows\ref\ImageQuantization.dll
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\bin\Debug\net6.0-windows\ImageQuantization.exe
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\bin\Debug\net6.0-windows\ImageQuantization.deps.json
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\bin\Debug\net6.0-windows\ImageQuantization.runtimeconfig.json
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\bin\Debug\net6.0-windows\ImageQuantization.dll
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\bin\Debug\net6.0-windows\ImageQuantization.pdb
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.csproj.AssemblyReference.cache
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.MainForm.resources
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.csproj.GenerateResource.cache
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.AssemblyInfoInputs.cache
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.AssemblyInfo.cs
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.csproj.CoreCompileInputs.cache
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.dll
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\obj\Debug\net6.0-windows\refint\ImageQuantization.dll
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.pdb
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\obj\Debug\net6.0-windows\ImageQuantization.genruntimeconfig.cache
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization .Net 6.0\ImageQuantization\obj\Debug\net6.0-windows\ref\ImageQuantization.dll

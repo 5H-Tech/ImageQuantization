@@ -8,13 +8,13 @@ namespace ImageQuantization
 {
     internal class MappingClass
     {
-        List<RGBPixel> palate;
+        Dictionary<int,int> palate;
         public RGBPixel[,] ImageMatrix;
         colorCodingClass colorCodingClass;
    
 
 
-        public  MappingClass(List<RGBPixel>palate, RGBPixel[,] ImageMatrix)
+        public  MappingClass(Dictionary<int, int> palate, RGBPixel[,] ImageMatrix)
         {
             this.palate = palate;
             this.ImageMatrix = ImageMatrix;
@@ -23,25 +23,31 @@ namespace ImageQuantization
 
       
         public RGBPixel[,]  map()
-        {        
-            for (int x = 0; x < ImageMatrix.GetLength(0); x++)
+        {
+            int width = ImageMatrix.GetLength(1);
+            int height = ImageMatrix.GetLength(0);
+            int r, g, b;
+            int key = 0;
+            int value = 0;
+            for (int y = 0; y < height; y++)
             {
-                for (int y = 0; y < ImageMatrix.GetLength(1); y++)
+                for (int x = 0; x < width; x++)
                 {
-                    float min = int.MaxValue;
-                    int minInd = 0;
-                    for (int i = 0; i < palate.Count; i++)
-                    {
-                        int f = (int)getDistanceClass.getEqldeanDistancee(ImageMatrix[x,y] ,palate[i]);
-                        if (f<min)
-                        {
-                            min = f;
-                            minInd = i;
-                        }
-                    }
-                    ImageMatrix[x, y]=palate[minInd];
+                    r = ImageMatrix[y, x].red;
+                    g = ImageMatrix[y, x].green;
+                    b = ImageMatrix[y, x].blue;
+                    RGBPixel p;
+                    p.red = (byte)r;
+                    p.green = (byte)g;
+                    p.blue = (byte)b;
+                    key = colorCodingClass.codeColors(p);
+                    value = palate[key];
+
+                    ImageMatrix[y, x] = colorCodingClass.decodeColors(value);
+                  
                 }
             }
+          
             return ImageMatrix;
         }
 

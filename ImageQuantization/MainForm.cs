@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace ImageQuantization
@@ -37,12 +38,19 @@ namespace ImageQuantization
             int maskSize = (int)nudMaskSize.Value;
 
             //creating an object form the imge class 
+            Stopwatch stopwatch = new Stopwatch();
             Image im = new Image(ImageMatrix);
-            MessageBox.Show("Distinct colors= " + im.getDistinctColors() + "\nTotal weight= " + im.getMSTsum());
-            //ImageMatrix = im.Quantize(int.Parse(textBox1.Text));
+            stopwatch.Start();
+            int c = im.getDistinctColors();
+            float f = im.getMSTsum();
+            ImageMatrix = im.makeClister(int.Parse(noClusters.Text));
+            stopwatch.Stop();
+            RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0;
 
+
+            MessageBox.Show("Distinct colors= " + c+ "\nTotal weight= " +f);
             
-            ImageMatrix = ImageOperations.GaussianFilter1D(im.makeClister(), maskSize, sigma);
+            ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
             im = null;
         }

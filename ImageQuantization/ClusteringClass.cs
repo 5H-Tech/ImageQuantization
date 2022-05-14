@@ -15,9 +15,9 @@ namespace ImageQuantization
         static Dictionary<int, List<int>> adj;
         static Dictionary<int, char> color;
         static List<List<int>> clusters;
-        static List<RGBPixel> palate;
+        static Dictionary<int, int> palate;
         static int ind;
-        public List<RGBPixel> generatePalete(List<int> dis,List<Edge> mst, int k)
+        public Dictionary<int,int> generatePalete(List<int> dis,List<Edge> mst, int k)
         {
             TreeEdges = mst;
             int x = k;
@@ -29,7 +29,7 @@ namespace ImageQuantization
                 mst[ind] = removeEdge(TreeEdges[ind]);
                 x--;
             }
-            List<List<int>> c = getClusters(dis, TreeEdges, k);
+            List<List<int>> c = getClusters(dis, TreeEdges);
             getCentroid();
 
             //for (int i = 0; i < palate.Count; i++)
@@ -61,26 +61,20 @@ namespace ImageQuantization
         public Edge removeEdge(Edge e)
         {
             Edge ee = new Edge();
-            e.src = e.src;
+            ee.src = e.src;
             ee.dst = e.dst;
 
             ee.Weight = -1;
             return ee;
         }
 
-        public List<List<int>> getClusters(List<int> vertecies,List<Edge> mst,int k)
+        public List<List<int>> getClusters(List<int> vertecies,List<Edge> mst)
         {
            
             adj = new Dictionary<int, List<int>>();
             color = new Dictionary<int, char>();
             clusters = new List<List<int>>();
             ind = -1;
-            //for (int i = 0; i < k; i++)
-            //{
-            //    clusters.Add(new List<int>());
-            //}
-
-
             for (int i = 0; i < vertecies.Count; i++)
             {
                 color.Add(vertecies[i], 'w');
@@ -92,6 +86,7 @@ namespace ImageQuantization
                 if (mst[i].Weight != -1)
                 {
                     adj[mst[i].src].Add(mst[i].dst);
+                    adj[mst[i].dst].Add(mst[i].src);
                 }
             }
 
@@ -111,7 +106,7 @@ namespace ImageQuantization
 
 
 
-           // MessageBox.Show(clusters.Count.ToString());
+            //MessageBox.Show(clusters.Count.ToString());
 
             //for (int i = 0; i < clusters.Count; i++)
             //{
@@ -131,12 +126,9 @@ namespace ImageQuantization
             color[vertice] = 'g'; 
             for (int j = 0; j < adj[vertice].Count; j++)
             {
-                if (adj[vertice][j] != null)
-                {                   
-                    if (color[adj[vertice][j]] == 'w')
-                    {                    
-                        Dfs(adj[vertice][j]);
-                    }
+                if (color[adj[vertice][j]] == 'w')
+                {
+                    Dfs(adj[vertice][j]);
                 }
             }
            
@@ -147,7 +139,7 @@ namespace ImageQuantization
         public void getCentroid()
         {
             colorCodingClass codingClass = new colorCodingClass();
-            palate = new List<RGBPixel>();
+            palate = new Dictionary<int, int>();
             for (int i = 0; i < clusters.Count; i++)
             {
                 int red = 0, gree = 0, blue = 0;
@@ -167,7 +159,13 @@ namespace ImageQuantization
                 p.red = (byte)red;
                 p.green = (byte)gree;
                 p.blue = (byte)blue;
-                palate.Add(p);
+
+                int mean = codingClass.codeColors(p);
+
+                foreach (var l in clusters[i])
+                {
+                    palate.Add(l, mean);
+                }
             }
         }
     }

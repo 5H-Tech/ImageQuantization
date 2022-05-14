@@ -41,7 +41,8 @@ namespace ImageQuantization
             MessageBox.Show("Distinct colors= " + im.getDistinctColors() + "\nTotal weight= " + im.getMSTsum());
             //ImageMatrix = im.Quantize(int.Parse(textBox1.Text));
 
-            ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
+            
+            ImageMatrix = ImageOperations.GaussianFilter1D(im.makeClister(), maskSize, sigma);
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
             im = null;
         }

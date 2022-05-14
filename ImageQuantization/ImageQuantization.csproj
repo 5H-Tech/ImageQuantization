@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ImageQuantization</RootNamespace>
     <AssemblyName>ImageQuantization</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -48,8 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClusteringClass.cs" />
+    <Compile Include="colorCodingClass.cs" />
     <Compile Include="FastPriorityQueue.cs" />
     <Compile Include="FastPriorityQueueNode.cs" />
+    <Compile Include="getDistanceClass.cs" />
     <Compile Include="IFixedSizePriorityQueue.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="IPriorityQueue.cs" />
@@ -60,6 +63,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageOperations.cs" />
+    <Compile Include="MappingClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">

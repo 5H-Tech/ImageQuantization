@@ -14,6 +14,7 @@ namespace ImageQuantization
         public int src;      // source node
         public int dst;      // destination node
         public float Weight;  // weight of edge
+        
     }
     class Vertex : FastPriorityQueueNode
     {
@@ -35,6 +36,9 @@ namespace ImageQuantization
     }
     class Image
     {
+        ClusteringClass cluster;
+        MappingClass MappingClass;
+        colorCodingClass colorCoding;
         RGBPixel[,] aimImage;
         List<int> listOfDistincet = new List<int>();
         List<Edge> minSpanningTreeEdges = new List<Edge>();
@@ -42,24 +46,12 @@ namespace ImageQuantization
         public Image(RGBPixel[,] ImagePixels)
         {
             aimImage = ImagePixels;
+            cluster = new ClusteringClass();
+            colorCoding = new colorCodingClass();
+          
         }
 
-        private int codeColors(RGBPixel pixl)
-        {
-
-            int enCodedColr = (pixl.red << 16) + (pixl.green << 8) + pixl.blue;
-            return enCodedColr;
-        }
-
-
-        private RGBPixel decodeColors(int codedColor)
-        {
-            RGBPixel res;
-            res.red = (byte)(codedColor >> 16);
-            res.green = (byte)(codedColor >> 8);
-            res.blue = (byte)(codedColor);
-            return res;
-        }
+       
 
 
         public int getDistinctColors()
@@ -70,7 +62,7 @@ namespace ImageQuantization
             {
                 for (int y = 0; y < aimImage.GetLength(1); y++)
                 {
-                    int incodedColor = codeColors(aimImage[x, y]);
+                    int incodedColor = colorCoding.codeColors(aimImage[x, y]);
                     destincetSet.Add(incodedColor);
                 }
             }
@@ -78,19 +70,7 @@ namespace ImageQuantization
             return listOfDistincet.Count;
         }
 
-        private double getEqldeanDistance(Vertex src, Vertex dst)
-        {
-            double res;
-            RGBPixel srcRGB = decodeColors(src.vert);
-            RGBPixel dstRGB = decodeColors(dst.vert);
-
-
-            float X = dstRGB.red - srcRGB.red;
-            float Y = dstRGB.green - srcRGB.green;
-            float Z = dstRGB.blue - srcRGB.blue;
-            res = Math.Sqrt((X * X) + (Y * Y) + (Z * Z));
-            return res;
-        }
+       
 
 
         private void buildingMST()
@@ -106,6 +86,8 @@ namespace ImageQuantization
             while (q.Count != 0)
             {
                 Vertex Top = q.Dequeue();
+               
+
                 if (Top.parant != null)       //if this not the root node 
                 {
                     // we will take the top of the queue wher the smollest 
@@ -123,7 +105,7 @@ namespace ImageQuantization
                     // the root node will be the parant off all nodes 
                     // and will the nearst node to the root will be in the top of the queue
                     // in the next iteration we will take the nearst node to the root and do the same then pop it form the q and so on...
-                    tmp = (float)getEqldeanDistance(unit, Top);
+                    tmp = (float)getDistanceClass.getEqldeanDistance(unit, Top);
                     if (tmp < unit.Priority)
                     {
                         unit.parant = Top.vert;
@@ -140,8 +122,98 @@ namespace ImageQuantization
             float wahit = 0;
             foreach (var item in minSpanningTreeEdges)
                 wahit = wahit + item.Weight;
-
             return wahit;
+        }
+
+        public RGBPixel[,] makeClister()
+        {
+            List<RGBPixel> p = cluster.generatePalete(listOfDistincet, minSpanningTreeEdges, 2160);
+            MappingClass = new MappingClass(p, aimImage);
+            RGBPixel[,] y = MappingClass.map();
+            return y;
+        }
+
+       
+
+
+        public void getK(List<Edge> mst)
+        {
+            int r = 0;
+            double oldStv=0;
+            double newStv=0;
+            double stv = 0;
+            double mean = 0;
+            List<float> tmp = new List<float>();
+            
+            for (int i = 0; i < mst.Count; i++)
+            {
+                tmp.Add(mst[i].Weight);
+            }
+            tmp.Sort();
+           
+            do
+            {
+
+                stv = standardDeviation(tmp);
+                mean = getMean(tmp);
+                oldStv = stv;
+
+                double max = 0;
+                int index = 0;
+                for (int j = 0; j < tmp.Count; j++)
+                {
+                    if(Math.Abs(tmp[j]-mean)>max)
+                    {
+                        max =tmp[j];
+                        index = j;
+                    }
+                }
+                    tmp.RemoveAt(index);
+                    r += 2;
+                    stv = standardDeviation(tmp);   
+                    mean = getMean(tmp);
+                    newStv = stv;
+                
+            } while (oldStv - newStv > 0.0001 && tmp.Count>1);
+            MessageBox.Show(r.ToString() );
+        }
+
+       
+
+
+        public double standardDeviation(List<float> tmp)
+        {
+            double result = 0;
+            double sum = 0;
+
+
+
+            double mean = getMean(tmp);
+            for (int i = 0; i < tmp.Count; i++)
+            {
+                sum += (Math.Pow((tmp[i] - mean),2));
+            }
+            sum = sum/tmp.Count;
+                
+                result = Math.Sqrt(sum);
+
+
+
+            return result;
+        }
+
+        public double getMean(List<float> tmp)
+        {
+            double result = 0;
+
+
+            for (int i = 0; i < tmp.Count; i++)
+            {
+                result += tmp[i];
+            }
+            result =result/ tmp.Count();
+
+            return result;
         }
 
 

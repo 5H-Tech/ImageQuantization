@@ -150,19 +150,24 @@ namespace ImageQuantization
             palate = new List<RGBPixel>();
             for (int i = 0; i < clusters.Count; i++)
             {
-                RGBPixel rGBPixel = new RGBPixel(); 
+                int red = 0, gree = 0, blue = 0;
                 
                 for (int j = 0; j < clusters[i].Count; j++)
                 {
                     RGBPixel rGB =  codingClass.decodeColors(clusters[i][j]);
-                    rGBPixel.red += rGB.red;
-                    rGBPixel.green += rGB.green;
-                    rGBPixel.blue += rGB.blue;
+                    red += rGB.red;
+                    gree += rGB.green;
+                    blue += rGB.blue;
                 }
-                rGBPixel.red /= (byte)clusters[i].Count;
-                rGBPixel.green /= (byte)clusters[i].Count;
-                rGBPixel.blue /= (byte)clusters[i].Count;
-                palate.Add(rGBPixel);
+                red /= clusters[i].Count;
+                gree /= clusters[i].Count;
+                blue /= clusters[i].Count;
+
+                RGBPixel p;
+                p.red = (byte)red;
+                p.green = (byte)gree;
+                p.blue = (byte)blue;
+                palate.Add(p);
             }
         }
     }

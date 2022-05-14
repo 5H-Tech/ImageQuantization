@@ -127,7 +127,7 @@ namespace ImageQuantization
 
         public RGBPixel[,] makeClister()
         {
-            List<RGBPixel> p = cluster.generatePalete(listOfDistincet, minSpanningTreeEdges, 2160);
+            List<RGBPixel> p = cluster.generatePalete(listOfDistincet, minSpanningTreeEdges, 2);
             MappingClass = new MappingClass(p, aimImage);
             RGBPixel[,] y = MappingClass.map();
             return y;

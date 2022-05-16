@@ -57,16 +57,16 @@ namespace ImageQuantization
         public int getDistinctColors()
         {
 
-            HashSet<int> destincetSet = new HashSet<int>();
+            HashSet<int> distinctSet = new HashSet<int>();
             for (int x = 0; x < aimImage.GetLength(0); x++)
             {
                 for (int y = 0; y < aimImage.GetLength(1); y++)
                 {
                     int incodedColor = colorCoding.codeColors(aimImage[x, y]);
-                    destincetSet.Add(incodedColor);
+                    distinctSet.Add(incodedColor);
                 }
             }
-            listOfDistincet = destincetSet.ToList();
+            listOfDistincet = distinctSet.ToList();
             return listOfDistincet.Count;
         }
 
@@ -105,7 +105,7 @@ namespace ImageQuantization
                     // the root node will be the parant off all nodes 
                     // and will the nearst node to the root will be in the top of the queue
                     // in the next iteration we will take the nearst node to the root and do the same then pop it form the q and so on...
-                    tmp = (float)getDistanceClass.getEqldeanDistance(unit, Top);
+                    tmp = (float)getDistanceClass.getEculideanDistance(unit, Top);
                     if (tmp < unit.Priority)
                     {
                         unit.parant = Top.vert;
@@ -127,7 +127,7 @@ namespace ImageQuantization
 
         public RGBPixel[,] makeClister(int k)
         {
-            Dictionary<int,int> p = cluster.generatePalete(listOfDistincet, minSpanningTreeEdges, k);
+            Dictionary<int,int> p = cluster.generatePalette(listOfDistincet, minSpanningTreeEdges, k);
             MappingClass = new MappingClass(p, aimImage);
             RGBPixel[,] y = MappingClass.map();
             return y;

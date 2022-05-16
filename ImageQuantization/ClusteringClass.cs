@@ -17,7 +17,7 @@ namespace ImageQuantization
         static List<List<int>> clusters;
         static Dictionary<int, int> palate;
         static int ind;
-        public Dictionary<int,int> generatePalete(List<int> dis,List<Edge> mst, int k)
+        public Dictionary<int,int> generatePalette(List<int> dis,List<Edge> mst, int k)
         {
             TreeEdges = mst;
             int x = k;
@@ -60,12 +60,12 @@ namespace ImageQuantization
 
         public Edge removeEdge(Edge e)
         {
-            Edge ee = new Edge();
-            ee.src = e.src;
-            ee.dst = e.dst;
+            Edge e2 = new Edge();
+            e2.src = e.src;
+            e2.dst = e.dst;
 
-            ee.Weight = -1;
-            return ee;
+            e2.Weight = -1;
+            return e2;
         }
 
         public List<List<int>> getClusters(List<int> vertecies,List<Edge> mst)
@@ -120,19 +120,19 @@ namespace ImageQuantization
             return clusters;
         }
 
-        public static void Dfs(int vertice)
+        public static void Dfs(int vertex)
         {
-            clusters[ind].Add(vertice);
-            color[vertice] = 'g'; 
-            for (int j = 0; j < adj[vertice].Count; j++)
+            clusters[ind].Add(vertex);
+            color[vertex] = 'g'; //visited
+            for (int j = 0; j < adj[vertex].Count; j++)
             {
-                if (color[adj[vertice][j]] == 'w')
+                if (color[adj[vertex][j]] == 'w') //new
                 {
-                    Dfs(adj[vertice][j]);
+                    Dfs(adj[vertex][j]);
                 }
             }
            
-            color[vertice] = 'b';
+            color[vertex] = 'b'; //explored
            
         }
 

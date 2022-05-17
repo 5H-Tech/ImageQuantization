@@ -8,15 +8,15 @@ namespace ImageQuantization
 {
     internal class MappingClass
     {
-        Dictionary<int,int> palate;
+        Dictionary<int,int> palette;
         public RGBPixel[,] ImageMatrix;
         colorCodingClass colorCodingClass;
    
 
 
-        public  MappingClass(Dictionary<int, int> palate, RGBPixel[,] ImageMatrix)
+        public  MappingClass(Dictionary<int, int> palette, RGBPixel[,] ImageMatrix)
         {
-            this.palate = palate;
+            this.palette = palette;
             this.ImageMatrix = ImageMatrix;
             colorCodingClass = new colorCodingClass();
         }
@@ -41,7 +41,7 @@ namespace ImageQuantization
                     p.green = (byte)g;
                     p.blue = (byte)b;
                     key = colorCodingClass.codeColors(p);
-                    value = palate[key];
+                    value = palette[key];
 
                     ImageMatrix[y, x] = colorCodingClass.decodeColors(value);
                   

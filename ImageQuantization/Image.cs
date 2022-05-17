@@ -75,10 +75,10 @@ namespace ImageQuantization
 
         private void buildingMST()
         {
-            //it is the fast Priorty queu (linked Lib)
+            //it is the fast Priorty queue (linked Lib)
             FastPriorityQueue<Vertex> q = new FastPriorityQueue<Vertex>(listOfDistinct.Count);
 
-            //intializing the the queue valuses by infny and without parant node
+            //intializing the the queue values by infnity with parent nodes set to null
             for (int i = 0; i < listOfDistinct.Count; i++)
                 q.Enqueue(new Vertex(listOfDistinct[i], null), int.MaxValue);
 
@@ -136,7 +136,7 @@ namespace ImageQuantization
        
 
 
-        public void getK(List<Edge> mst)
+        /*public void getK(List<Edge> mst)
         {
             int r = 0;
             double oldStv=0;
@@ -176,7 +176,7 @@ namespace ImageQuantization
                 
             } while (oldStv - newStv > 0.0001 && tmp.Count>1);
             MessageBox.Show(r.ToString() );
-        }
+        }*/
 
        
 

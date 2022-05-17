@@ -43,7 +43,7 @@ namespace ImageQuantization
             stopwatch.Start();
             int c = im.getDistinctColors();
             float f = im.getMSTsum();
-            ImageMatrix = im.makeClister(int.Parse(noClusters.Text));
+            ImageMatrix = im.makeCluster(int.Parse(noClusters.Text));
             stopwatch.Stop();
             RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0;
 

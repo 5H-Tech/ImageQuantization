@@ -40,7 +40,7 @@ namespace ImageQuantization
         MappingClass MappingClass;
         colorCodingClass colorCoding;
         RGBPixel[,] aimImage;
-        List<int> listOfDistincet = new List<int>();
+        List<int> listOfDistinct = new List<int>();
         List<Edge> minSpanningTreeEdges = new List<Edge>();
 
         public Image(RGBPixel[,] ImagePixels)
@@ -62,12 +62,12 @@ namespace ImageQuantization
             {
                 for (int y = 0; y < aimImage.GetLength(1); y++)
                 {
-                    int incodedColor = colorCoding.codeColors(aimImage[x, y]);
-                    distinctSet.Add(incodedColor);
+                    int encodedColor = colorCoding.codeColors(aimImage[x, y]);
+                    distinctSet.Add(encodedColor);
                 }
             }
-            listOfDistincet = distinctSet.ToList();
-            return listOfDistincet.Count;
+            listOfDistinct = distinctSet.ToList();
+            return listOfDistinct.Count;
         }
 
        
@@ -76,11 +76,11 @@ namespace ImageQuantization
         private void buildingMST()
         {
             //it is the fast Priorty queu (linked Lib)
-            FastPriorityQueue<Vertex> q = new FastPriorityQueue<Vertex>(listOfDistincet.Count);
+            FastPriorityQueue<Vertex> q = new FastPriorityQueue<Vertex>(listOfDistinct.Count);
 
             //intializing the the queue valuses by infny and without parant node
-            for (int i = 0; i < listOfDistincet.Count; i++)
-                q.Enqueue(new Vertex(listOfDistincet[i], null), int.MaxValue);
+            for (int i = 0; i < listOfDistinct.Count; i++)
+                q.Enqueue(new Vertex(listOfDistinct[i], null), int.MaxValue);
 
             float tmp;
             while (q.Count != 0)
@@ -119,15 +119,15 @@ namespace ImageQuantization
         {
             //its just getting the mst sum for printing 
             buildingMST();
-            float wahit = 0;
+            float weight = 0;
             foreach (var item in minSpanningTreeEdges)
-                wahit = wahit + item.Weight;
-            return wahit;
+                weight = weight + item.Weight;
+            return weight;
         }
 
-        public RGBPixel[,] makeClister(int k)
+        public RGBPixel[,] makeCluster(int k)
         {
-            Dictionary<int,int> p = cluster.generatePalette(listOfDistincet, minSpanningTreeEdges, k);
+            Dictionary<int,int> p = cluster.generatePalette(listOfDistinct, minSpanningTreeEdges, k);
             MappingClass = new MappingClass(p, aimImage);
             RGBPixel[,] y = MappingClass.map();
             return y;

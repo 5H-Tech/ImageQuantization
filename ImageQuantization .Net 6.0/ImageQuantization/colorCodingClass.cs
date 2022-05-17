@@ -8,11 +8,11 @@ namespace ImageQuantization
 {
     internal class colorCodingClass
     {
-        public int codeColors(RGBPixel pixl)
+        public int codeColors(RGBPixel pixel)
         {
 
-            int enCodedColr = (pixl.red << 16) + (pixl.green << 8) + pixl.blue;
-            return enCodedColr;
+            int enCodedColor = (pixel.red << 16) + (pixel.green << 8) + pixel.blue;
+            return enCodedColor;
         }
 
 

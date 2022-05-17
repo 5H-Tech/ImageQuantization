@@ -40,11 +40,11 @@ namespace ImageQuantization
         MappingClass MappingClass;
         colorCodingClass colorCoding;
         RGBPixel[,] aimImage;
-        List<int> listOfDistincet = new List<int>();
+        List<int> listOfDistinct = new List<int>();
         List<Edge> minSpanningTreeEdges = new List<Edge>();
-        List<Edge> minSpanningTreeEdgesForBultIN = new List<Edge>();
-        Dictionary<int, int> palate;
-        float totalW = 0;
+        public float totalWahit = 0;
+
+       
 
         public Image(RGBPixel[,] ImagePixels)
         {
@@ -54,24 +54,87 @@ namespace ImageQuantization
           
         }
 
+       
+
+
         public int getDistinctColors()
         {
 
-            HashSet<int> destincetSet = new HashSet<int>();
+            HashSet<int> distinctSet = new HashSet<int>();
             for (int x = 0; x < aimImage.GetLength(0); x++)
             {
                 for (int y = 0; y < aimImage.GetLength(1); y++)
                 {
-                    int incodedColor = colorCoding.codeColors(aimImage[x, y]);
-                    destincetSet.Add(incodedColor);
+                    int encodedColor = colorCoding.codeColors(aimImage[x, y]);
+                    distinctSet.Add(encodedColor);
                 }
             }
-            listOfDistincet = destincetSet.ToList();
-            return listOfDistincet.Count;
+            listOfDistinct = distinctSet.ToList();
+            return listOfDistinct.Count;
         }
-        
-        
-        private double getEqldeanDistance2(Edge src, Edge dst)
+
+       
+
+
+        private void buildingMST()
+        {
+            //it is the fast Priorty queue (linked Lib)
+            FastPriorityQueue<Vertex> q = new FastPriorityQueue<Vertex>(listOfDistinct.Count);
+
+            //intializing the the queue values by infnity with parent nodes set to null
+            for (int i = 0; i < listOfDistinct.Count; i++)
+                q.Enqueue(new Vertex(listOfDistinct[i], null), int.MaxValue);
+
+            float tmp;
+            while (q.Count != 0)
+            {
+                Vertex Top = q.Dequeue();
+               
+
+                if (Top.parant != null)       //if this not the root node 
+                {
+                    // we will take the top of the queue wher the smollest 
+                    // edge whaite 
+                    Edge E;
+                    E.src = Top.vert;
+                    E.dst = (int)(Top.parant);
+                    E.Weight = (float)(Top.Priority);
+                    totalWahit += E.Weight;
+                    minSpanningTreeEdges.Add(E);
+                }
+                //relaxing the edges 
+                foreach (var unit in q)
+                {
+                    // @ when this loop done at firest time 
+                    // the root node will be the parant off all nodes 
+                    // and will the nearst node to the root will be in the top of the queue
+                    // in the next iteration we will take the nearst node to the root and do the same then pop it form the q and so on...
+                    tmp = (float)getDistanceClass.getEculideanDistance(unit, Top);
+                    if (tmp < unit.Priority)
+                    {
+                        unit.parant = Top.vert;
+                        q.UpdatePriority(unit, tmp);
+                    }
+                }
+            }
+        }
+
+        public float getMSTsum()
+        {
+            //its just getting the mst sum for printing 
+            buildingMST();
+            float weight = 0;
+            foreach (var item in minSpanningTreeEdges)
+                weight = weight + item.Weight;
+            return weight;
+        }
+
+
+
+        #region MST With the Bultin Pirotry queue
+
+        List<Edge> minSpanningTreeEdgesForBultIN = new List<Edge>();
+        private double getEqldeanDistance(Edge src, Edge dst)
         {
             double res;
             RGBPixel srcRGB = colorCoding.decodeColors(src.src);
@@ -87,15 +150,13 @@ namespace ImageQuantization
 
         private void MSTWithBultInQueue()
         {
-            //it is the fast Priorty queu (linked Lib)
+
             PriorityQueue<Edge, float> queue = new PriorityQueue<Edge, float>();
 
-
-            //intializing the the queue valuses by infny and without parant node
-            for (int i = 0; i < listOfDistincet.Count; i++)
+            for (int i = 0; i < listOfDistinct.Count; i++)
             {
                 Edge e;
-                e.src = listOfDistincet[i];
+                e.src = listOfDistinct[i];
                 e.dst = 0;
                 e.Weight = float.MaxValue;
                 queue.Enqueue(e, float.MaxValue);
@@ -118,7 +179,7 @@ namespace ImageQuantization
                 while (queue.Count != 0)
                 {
                     Edge e = queue.Dequeue();
-                    tmp = (float)getEqldeanDistance2(e, Top);
+                    tmp = (float)getEqldeanDistance(e, Top);
                     if (tmp < e.Weight)
                     {
                         e.dst = Top.src;
@@ -143,58 +204,64 @@ namespace ImageQuantization
 
             return wahit;
         }
+        #endregion
 
-        public float buildingMST()
+
+        public RGBPixel[,] makeCluster(int k)
         {
-            //it is the fast Priorty queu (linked Lib)
-            FastPriorityQueue<Vertex> q = new FastPriorityQueue<Vertex>(listOfDistincet.Count);
-
-            //intializing the the queue valuses by infny and without parant node
-            for (int i = 0; i < listOfDistincet.Count; i++)
-                q.Enqueue(new Vertex(listOfDistincet[i], null), int.MaxValue);
-
-            float tmp;
-            while (q.Count != 0)
-            {
-                Vertex Top = q.Dequeue();
-               
-
-                if (Top.parant != null)       //if this not the root node 
-                {
-                    // we will take the top of the queue wher the smollest 
-                    // edge whaite 
-                    Edge E;
-                    E.src = Top.vert;
-                    E.dst = (int)(Top.parant);
-                    E.Weight = (float)(Top.Priority);
-                    totalW += E.Weight;
-                    minSpanningTreeEdges.Add(E);
-                }
-                //relaxing the edges 
-                foreach (var unit in q)
-                {
-                    // @ when this loop done at firest time 
-                    // the root node will be the parant off all nodes 
-                    // and will the nearst node to the root will be in the top of the queue
-                    // in the next iteration we will take the nearst node to the root and do the same then pop it form the q and so on...
-                    tmp = (float)getDistanceClass.getEqldeanDistance(unit, Top);
-                    if (tmp < unit.Priority)
-                    {
-                        unit.parant = Top.vert;
-                        q.UpdatePriority(unit, tmp);
-                    }
-                }
-            }
-            return totalW;
-        }
-
-        public RGBPixel[,] makeClister(int k)
-        {
-            Dictionary<int, int> p = cluster.generatePalete(listOfDistincet, minSpanningTreeEdges, k);
+            Dictionary<int,int> p = cluster.generatePalette(listOfDistinct, minSpanningTreeEdges, k);
             MappingClass = new MappingClass(p, aimImage);
             RGBPixel[,] y = MappingClass.map();
             return y;
         }
+
+       
+
+
+        /*public void getK(List<Edge> mst)
+        {
+            int r = 0;
+            double oldStv=0;
+            double newStv=0;
+            double stv = 0;
+            double mean = 0;
+            List<float> tmp = new List<float>();
+            
+            for (int i = 0; i < mst.Count; i++)
+            {
+                tmp.Add(mst[i].Weight);
+            }
+            tmp.Sort();
+           
+            do
+            {
+
+                stv = standardDeviation(tmp);
+                mean = getMean(tmp);
+                oldStv = stv;
+
+                double max = 0;
+                int index = 0;
+                for (int j = 0; j < tmp.Count; j++)
+                {
+                    if(Math.Abs(tmp[j]-mean)>max)
+                    {
+                        max =tmp[j];
+                        index = j;
+                    }
+                }
+                    tmp.RemoveAt(index);
+                    r += 2;
+                    stv = standardDeviation(tmp);   
+                    mean = getMean(tmp);
+                    newStv = stv;
+                
+            } while (oldStv - newStv > 0.0001 && tmp.Count>1);
+            MessageBox.Show(r.ToString() );
+        }*/
+
+       
+
 
         public double standardDeviation(List<float> tmp)
         {
@@ -230,6 +297,8 @@ namespace ImageQuantization
 
             return result;
         }
+
+
 
 
     }

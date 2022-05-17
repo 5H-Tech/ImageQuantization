@@ -42,16 +42,17 @@ namespace ImageQuantization
             Image im = new Image(ImageMatrix);
             stopwatch.Start();
             int c = im.getDistinctColors();
-            float f = im.buildingMST();
-            ImageMatrix = im.makeClister(int.Parse(noClusters.Text));
+            float f = im.getMSTsum();
+            ImageMatrix = im.makeCluster(int.Parse(noClusters.Text));
             stopwatch.Stop();
             RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0;
 
 
             MessageBox.Show("Distinct colors= " + c+ "\nTotal weight= " +f);
+            
             ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
-            
+            im = null;
         }
 
 

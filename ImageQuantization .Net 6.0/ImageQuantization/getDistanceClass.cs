@@ -9,7 +9,7 @@ namespace ImageQuantization
     internal class getDistanceClass
     {
         static colorCodingClass colorCodingClass;
-        public static double getEqldeanDistance(Vertex src, Vertex dst)
+        public static double getEculideanDistance(Vertex src, Vertex dst)
         {
             colorCodingClass =new colorCodingClass();
             double res;
@@ -25,17 +25,17 @@ namespace ImageQuantization
         }
 
 
-        public static double getEqldeanDistancee(RGBPixel srcRGB, RGBPixel dstRGB)
-        {
-            colorCodingClass = new colorCodingClass();
-            double res;
+        //public static double getEqldeanDistancee(RGBPixel srcRGB, RGBPixel dstRGB)
+        //{
+        //    colorCodingClass = new colorCodingClass();
+        //    double res;
            
 
-            float X = dstRGB.red - srcRGB.red;
-            float Y = dstRGB.green - srcRGB.green;
-            float Z = dstRGB.blue - srcRGB.blue;
-            res = Math.Sqrt((X * X) + (Y * Y) + (Z * Z));
-            return res;
-        }
+        //    float X = dstRGB.red - srcRGB.red;
+        //    float Y = dstRGB.green - srcRGB.green;
+        //    float Z = dstRGB.blue - srcRGB.blue;
+        //    res = Math.Sqrt((X * X) + (Y * Y) + (Z * Z));
+        //    return res;
+        //}
     }
 }

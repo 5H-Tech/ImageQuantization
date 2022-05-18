@@ -18,20 +18,32 @@ namespace ImageQuantization
     }
     class Vertex : FastPriorityQueueNode
     {
-
-        /// <summary>
-        /// it is a class carry the node and it's parnt node
-        /// extind the Fast priority Queue so can be used as node in the perouty quee
-        /// </summary>
-        public Vertex()
-        { }
+        private int vert;
+        private int? parant;
         public Vertex(int vertex, int? parent)
         {
-            vert = vertex;
-            parant = parent;
+            this.vert = vertex;
+            this.parant = parent;
         }
-        public int vert { get; set; }          // current vertix
-        public int? parant { get; set; }         // parent vertix
+        public int? getParant()
+        {
+            return this.parant;
+        }
+        public void setParant(int? input)
+        {
+            parant = input;
+        }
+        public int getSalf()
+        {
+            return vert;
+        }
+        public void setSalf(int input)
+        {
+            vert = input;
+        }
+        
+               // current vertix
+             // parent vertix
 
     }
     class Image
@@ -43,8 +55,7 @@ namespace ImageQuantization
         List<int> listOfDistinct = new List<int>();
         List<Edge> minSpanningTreeEdges = new List<Edge>();
         public float totalWahit = 0;
-
-       
+        public int noColors = 0;
 
         public Image(RGBPixel[,] ImagePixels)
         {
@@ -54,10 +65,7 @@ namespace ImageQuantization
           
         }
 
-       
-
-
-        public int getDistinctColors()
+        public void getDistinctColors()
         {
 
             HashSet<int> distinctSet = new HashSet<int>();
@@ -70,65 +78,103 @@ namespace ImageQuantization
                 }
             }
             listOfDistinct = distinctSet.ToList();
-            return listOfDistinct.Count;
+            noColors = listOfDistinct.Count;
         }
-
-       
-
 
         private void buildingMST()
         {
             //it is the fast Priorty queue (linked Lib)
-            FastPriorityQueue<Vertex> q = new FastPriorityQueue<Vertex>(listOfDistinct.Count);
+            FastPriorityQueue<Vertex> fQueue = new FastPriorityQueue<Vertex>(listOfDistinct.Count);
 
             //intializing the the queue values by infnity with parent nodes set to null
             for (int i = 0; i < listOfDistinct.Count; i++)
-                q.Enqueue(new Vertex(listOfDistinct[i], null), int.MaxValue);
+                fQueue.Enqueue(new Vertex(listOfDistinct[i], null), int.MaxValue);
 
             float tmp;
-            while (q.Count != 0)
+            while (fQueue.Count != 0)
             {
-                Vertex Top = q.Dequeue();
+                Vertex Top = fQueue.Dequeue();
                
 
-                if (Top.parant != null)       //if this not the root node 
+                if (Top.getParant() != null)       //if this not the root node 
                 {
                     // we will take the top of the queue wher the smollest 
                     // edge whaite 
+                    totalWahit += Top.Priority;
                     Edge E;
-                    E.src = Top.vert;
-                    E.dst = (int)(Top.parant);
+                    E.src = Top.getSalf();
+                    E.dst = (int)(Top.getParant());
                     E.Weight = (float)(Top.Priority);
-                    totalWahit += E.Weight;
                     minSpanningTreeEdges.Add(E);
                 }
                 //relaxing the edges 
-                foreach (var unit in q)
+                foreach (var v in fQueue)
                 {
                     // @ when this loop done at firest time 
                     // the root node will be the parant off all nodes 
                     // and will the nearst node to the root will be in the top of the queue
                     // in the next iteration we will take the nearst node to the root and do the same then pop it form the q and so on...
-                    tmp = (float)getDistanceClass.getEculideanDistance(unit, Top);
-                    if (tmp < unit.Priority)
+                    tmp = (float)getDistanceClass.getEculideanDistance(v, Top);
+                    if (tmp < v.Priority)
                     {
-                        unit.parant = Top.vert;
-                        q.UpdatePriority(unit, tmp);
+                        
+                        v.setParant(Top.getSalf());
+                        fQueue.UpdatePriority(v, tmp);
                     }
                 }
             }
         }
 
-        public float getMSTsum()
+        public RGBPixel[,] makeCluster(int k)
         {
-            //its just getting the mst sum for printing 
-            buildingMST();
-            float weight = 0;
-            foreach (var item in minSpanningTreeEdges)
-                weight = weight + item.Weight;
-            return weight;
+            Dictionary<int,int> p = cluster.generatePalette(listOfDistinct, minSpanningTreeEdges, k);
+            MappingClass = new MappingClass(p, aimImage);
+            RGBPixel[,] y = MappingClass.map();
+            return y;
         }
 
+        public double standardDeviation(List<float> tmp)
+        {
+            double result = 0;
+            double sum = 0;
+
+
+
+            double mean = getMean(tmp);
+            for (int i = 0; i < tmp.Count; i++)
+            {
+                sum += (Math.Pow((tmp[i] - mean),2));
+            }
+            sum = sum/tmp.Count;
+                
+                result = Math.Sqrt(sum);
+
+
+
+            return result;
+        }
+
+        public double getMean(List<float> tmp)
+        {
+            double result = 0;
+
+
+            for (int i = 0; i < tmp.Count; i++)
+            {
+                result += tmp[i];
+            }
+            result =result/ tmp.Count();
+
+            return result;
+        }
+
+
+        public RGBPixel[,] quintize(int k)
+        {
+            getDistinctColors();
+            buildingMST();
+            return makeCluster(k);
+        }
 
 
         #region MST With the Bultin Pirotry queue
@@ -205,101 +251,6 @@ namespace ImageQuantization
             return wahit;
         }
         #endregion
-
-
-        public RGBPixel[,] makeCluster(int k)
-        {
-            Dictionary<int,int> p = cluster.generatePalette(listOfDistinct, minSpanningTreeEdges, k);
-            MappingClass = new MappingClass(p, aimImage);
-            RGBPixel[,] y = MappingClass.map();
-            return y;
-        }
-
-       
-
-
-        /*public void getK(List<Edge> mst)
-        {
-            int r = 0;
-            double oldStv=0;
-            double newStv=0;
-            double stv = 0;
-            double mean = 0;
-            List<float> tmp = new List<float>();
-            
-            for (int i = 0; i < mst.Count; i++)
-            {
-                tmp.Add(mst[i].Weight);
-            }
-            tmp.Sort();
-           
-            do
-            {
-
-                stv = standardDeviation(tmp);
-                mean = getMean(tmp);
-                oldStv = stv;
-
-                double max = 0;
-                int index = 0;
-                for (int j = 0; j < tmp.Count; j++)
-                {
-                    if(Math.Abs(tmp[j]-mean)>max)
-                    {
-                        max =tmp[j];
-                        index = j;
-                    }
-                }
-                    tmp.RemoveAt(index);
-                    r += 2;
-                    stv = standardDeviation(tmp);   
-                    mean = getMean(tmp);
-                    newStv = stv;
-                
-            } while (oldStv - newStv > 0.0001 && tmp.Count>1);
-            MessageBox.Show(r.ToString() );
-        }*/
-
-       
-
-
-        public double standardDeviation(List<float> tmp)
-        {
-            double result = 0;
-            double sum = 0;
-
-
-
-            double mean = getMean(tmp);
-            for (int i = 0; i < tmp.Count; i++)
-            {
-                sum += (Math.Pow((tmp[i] - mean),2));
-            }
-            sum = sum/tmp.Count;
-                
-                result = Math.Sqrt(sum);
-
-
-
-            return result;
-        }
-
-        public double getMean(List<float> tmp)
-        {
-            double result = 0;
-
-
-            for (int i = 0; i < tmp.Count; i++)
-            {
-                result += tmp[i];
-            }
-            result =result/ tmp.Count();
-
-            return result;
-        }
-
-
-
 
     }
 }

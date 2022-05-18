@@ -10,38 +10,29 @@ namespace ImageQuantization
     internal class ClusteringClass
     {
         List<Edge> TreeEdges = new List<Edge>();
-
-
         static Dictionary<int, List<int>> adj;
         static Dictionary<int, char> color;
         static List<List<int>> clusters;
         static Dictionary<int, int> palate;
         static int ind;
+
         public Dictionary<int,int> generatePalette(List<int> dis,List<Edge> mst, int k)
         {
             TreeEdges = mst;
             int x = k;
             int ind;
-
             while (x > 1)
             {
-                ind = getMaxEdge(TreeEdges);
+                ind = getInxMaxEdge(TreeEdges);
                 mst[ind] = removeEdge(TreeEdges[ind]);
                 x--;
             }
             List<List<int>> c = getClusters(dis, TreeEdges);
             getCentroid();
-
-            //for (int i = 0; i < palate.Count; i++)
-            //{
-            //    MessageBox.Show(palate[i].ToString());
-            //}
-
             return palate;
         }
 
-
-        public int getMaxEdge(List<Edge> mst)
+        public int getInxMaxEdge(List<Edge> mst)
         {
             int ind = 0;
             float max = 0;
@@ -90,7 +81,6 @@ namespace ImageQuantization
                 }
             }
 
-
             for (int i = 0; i < vertecies.Count ; i++)
             {
                 if(color[vertecies[i]]=='w')
@@ -100,22 +90,6 @@ namespace ImageQuantization
                     Dfs(vertecies[i]);                
                 }
             }
-
-
-
-
-
-
-            //MessageBox.Show(clusters.Count.ToString());
-
-            //for (int i = 0; i < clusters.Count; i++)
-            //{
-            //    for (int j = 0; j < clusters[i].Count; j++)
-            //    {
-            //        MessageBox.Show(clusters[i][j].ToString());
-            //    }
-            //    MessageBox.Show("done");
-            //}
 
             return clusters;
         }
@@ -131,7 +105,6 @@ namespace ImageQuantization
                     Dfs(adj[vertex][j]);
                 }
             }
-           
             color[vertex] = 'b'; //explored
            
         }

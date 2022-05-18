@@ -13,8 +13,8 @@ namespace ImageQuantization
         {
             colorCodingClass =new colorCodingClass();
             double res;
-            RGBPixel srcRGB = colorCodingClass.decodeColors(src.vert);
-            RGBPixel dstRGB = colorCodingClass.decodeColors(dst.vert);
+            RGBPixel srcRGB = colorCodingClass.decodeColors(src.getSalf());
+            RGBPixel dstRGB = colorCodingClass.decodeColors(dst.getSalf());
 
 
             float X = dstRGB.red - srcRGB.red;

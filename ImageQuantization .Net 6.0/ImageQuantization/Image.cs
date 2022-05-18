@@ -9,42 +9,55 @@ using Priority_Queue;
 namespace ImageQuantization
 {
 
-    public struct Edge
-    {
-        public int src;      // source node
-        public int dst;      // destination node
-        public float Weight;  // weight of edge
+    //public struct Edge:FastPriorityQueueNode
+    //{
+    //    public int src;      // source node
+    //    public int? dst;      // destination node
+    //    public float Weight;  // weight of edge
         
-    }
-    class Vertex : FastPriorityQueueNode
+    //}
+    class Edge : FastPriorityQueueNode
     {
-        private int vert;
-        private int? parant;
-        public Vertex(int vertex, int? parent)
+        public int vert;
+        public int parant;
+        //public float Weight;
+        public Edge(int vertex, int parent)
         {
             this.vert = vertex;
             this.parant = parent;
         }
-        public int? getParant()
+        public Edge(int vertex, int parent,float weight)
         {
-            return this.parant;
-        }
-        public void setParant(int? input)
-        {
-            parant = input;
-        }
-        public int getSalf()
-        {
-            return vert;
-        }
-        public void setSalf(int input)
-        {
-            vert = input;
-        }
-        
-               // current vertix
-             // parent vertix
+            this.vert = vertex;
+            this.parant = parent;
+            //this.Weight = weight;
+            this.Priority = weight;
 
+        }
+        //public int parant
+        //{
+        //    return this.parant;
+        //}
+        //public void setParant(int input)
+        //{
+        //    parant = input;
+        //}
+        //public int getSalf()
+        //{
+        //    return vert;
+        //}
+        //public void setSalf(int input)
+        //{
+        //    vert = input;
+        //}
+        //public float Weight
+        //{
+        //    return this.Weight;
+        //}
+        //public void setWeight(float input)
+        //{
+        //    this.Weight = input;
+        //}
     }
     class Image
     {
@@ -83,42 +96,26 @@ namespace ImageQuantization
 
         private void buildingMST()
         {
-            //it is the fast Priorty queue (linked Lib)
-            FastPriorityQueue<Vertex> fQueue = new FastPriorityQueue<Vertex>(listOfDistinct.Count);
-
-            //intializing the the queue values by infnity with parent nodes set to null
+            FastPriorityQueue<Edge> fQueue = new FastPriorityQueue<Edge>(listOfDistinct.Count);
             for (int i = 0; i < listOfDistinct.Count; i++)
-                fQueue.Enqueue(new Vertex(listOfDistinct[i], null), int.MaxValue);
+                fQueue.Enqueue(new Edge(listOfDistinct[i], -1), int.MaxValue);
 
             float tmp;
             while (fQueue.Count != 0)
             {
-                Vertex Top = fQueue.Dequeue();
-               
-
-                if (Top.getParant() != null)       //if this not the root node 
+                Edge front = fQueue.Dequeue();
+                if (front.parant != -1)
                 {
-                    // we will take the top of the queue wher the smollest 
-                    // edge whaite 
-                    totalWahit += Top.Priority;
-                    Edge E;
-                    E.src = Top.getSalf();
-                    E.dst = (int)(Top.getParant());
-                    E.Weight = (float)(Top.Priority);
-                    minSpanningTreeEdges.Add(E);
+                    totalWahit += front.Priority;
+                    /*front.Weight=front.Priority;*/
+                    minSpanningTreeEdges.Add(front);
                 }
-                //relaxing the edges 
                 foreach (var v in fQueue)
                 {
-                    // @ when this loop done at firest time 
-                    // the root node will be the parant off all nodes 
-                    // and will the nearst node to the root will be in the top of the queue
-                    // in the next iteration we will take the nearst node to the root and do the same then pop it form the q and so on...
-                    tmp = (float)getDistanceClass.getEculideanDistance(v, Top);
+                    tmp = (float)getDistanceClass.getEculideanDistance(v, front);
                     if (tmp < v.Priority)
                     {
-                        
-                        v.setParant(Top.getSalf());
+                        v.parant=(front.vert);
                         fQueue.UpdatePriority(v, tmp);
                     }
                 }
@@ -179,77 +176,77 @@ namespace ImageQuantization
 
         #region MST With the Bultin Pirotry queue
 
-        List<Edge> minSpanningTreeEdgesForBultIN = new List<Edge>();
-        private double getEqldeanDistance(Edge src, Edge dst)
-        {
-            double res;
-            RGBPixel srcRGB = colorCoding.decodeColors(src.src);
-            RGBPixel dstRGB = colorCoding.decodeColors(dst.src);
+        //List<Edge> minSpanningTreeEdgesForBultIN = new List<Edge>();
+        //private double getEqldeanDistance(Edge src, Edge dst)
+        //{
+        //    double res;
+        //    RGBPixel srcRGB = colorCoding.decodeColors(src.getSalf());
+        //    RGBPixel dstRGB = colorCoding.decodeColors(dst.getSalf());
 
 
-            float X = dstRGB.red - srcRGB.red;
-            float Y = dstRGB.green - srcRGB.green;
-            float Z = dstRGB.blue - srcRGB.blue;
-            res = Math.Sqrt((X * X) + (Y * Y) + (Z * Z));
-            return res;
-        }
+        //    float X = dstRGB.red - srcRGB.red;
+        //    float Y = dstRGB.green - srcRGB.green;
+        //    float Z = dstRGB.blue - srcRGB.blue;
+        //    res = Math.Sqrt((X * X) + (Y * Y) + (Z * Z));
+        //    return res;
+        //}
 
-        private void MSTWithBultInQueue()
-        {
+        //private void MSTWithBultInQueue()
+        //{
 
-            PriorityQueue<Edge, float> queue = new PriorityQueue<Edge, float>();
+        //    PriorityQueue<Edge, float> queue = new PriorityQueue<Edge, float>();
 
-            for (int i = 0; i < listOfDistinct.Count; i++)
-            {
-                Edge e;
-                e.src = listOfDistinct[i];
-                e.dst = 0;
-                e.Weight = float.MaxValue;
-                queue.Enqueue(e, float.MaxValue);
-            }
-            float tmp;
-            while (queue.Count != 0)
-            {
-                Edge Top = queue.Dequeue();
-                if (Top.dst != 0)       //if this not the root node 
-                {
-                    // we will take the top of the queue wher the smollest 
-                    // edge whaite 
-                    Edge E;
-                    E.src = Top.src;
-                    E.dst = (int)(Top.dst);
-                    E.Weight = (float)(Top.Weight);
-                    minSpanningTreeEdgesForBultIN.Add(E);
-                }
-                PriorityQueue<Edge, float> qtmp = new PriorityQueue<Edge, float>();
-                while (queue.Count != 0)
-                {
-                    Edge e = queue.Dequeue();
-                    tmp = (float)getEqldeanDistance(e, Top);
-                    if (tmp < e.Weight)
-                    {
-                        e.dst = Top.src;
-                        e.Weight = tmp;
-                        qtmp.Enqueue(e, tmp);
-                    }
-                    else
-                    {
-                        qtmp.Enqueue(e, e.Weight);
-                    }
-                }
-                queue = qtmp;
-            }
-        }
+        //    for (int i = 0; i < listOfDistinct.Count; i++)
+        //    {
+        //        Edge e;
+        //        e.src = listOfDistinct[i];
+        //        e.dst = 0;
+        //        e.Weight = float.MaxValue;
+        //        queue.Enqueue(e, float.MaxValue);
+        //    }
+        //    float tmp;
+        //    while (queue.Count != 0)
+        //    {
+        //        Edge Top = queue.Dequeue();
+        //        if (Top.dst != 0)       //if this not the root node 
+        //        {
+        //            // we will take the top of the queue wher the smollest 
+        //            // edge whaite 
+        //            Edge E;
+        //            E.src = Top.src;
+        //            E.dst = (int)(Top.dst);
+        //            E.Weight = (float)(Top.Weight);
+        //            minSpanningTreeEdgesForBultIN.Add(E);
+        //        }
+        //        PriorityQueue<Edge, float> qtmp = new PriorityQueue<Edge, float>();
+        //        while (queue.Count != 0)
+        //        {
+        //            Edge e = queue.Dequeue();
+        //            tmp = (float)getEqldeanDistance(e, Top);
+        //            if (tmp < e.Weight)
+        //            {
+        //                e.dst = Top.src;
+        //                e.Weight = tmp;
+        //                qtmp.Enqueue(e, tmp);
+        //            }
+        //            else
+        //            {
+        //                qtmp.Enqueue(e, e.Weight);
+        //            }
+        //        }
+        //        queue = qtmp;
+        //    }
+        //}
 
-        public float sumWithBultInQueue()
-        {
-            MSTWithBultInQueue();
-            float wahit = 0;
-            foreach (var item in minSpanningTreeEdges)
-                wahit += item.Weight;
+        //public float sumWithBultInQueue()
+        //{
+        //    MSTWithBultInQueue();
+        //    float wahit = 0;
+        //    foreach (var item in minSpanningTreeEdges)
+        //        wahit += item.Weight;
 
-            return wahit;
-        }
+        //    return wahit;
+        //}
         #endregion
 
     }

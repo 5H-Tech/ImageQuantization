@@ -48,8 +48,8 @@ namespace ImageQuantization
             RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0;
 
 
-            MessageBox.Show("Distinct colors= " + im.noColors + "\nTotal weight= " +im.totalWahit);
-            
+            MessageBox.Show("Distinct colors= " + im.noColors + "\nTotal weight= " + im.totalWahit);
+
             ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
             im = null;

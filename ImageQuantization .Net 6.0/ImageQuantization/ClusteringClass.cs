@@ -39,9 +39,9 @@ namespace ImageQuantization
 
             for (int i = 0; i < mst.Count; i++)
             {
-                if (mst[i].Weight > max)
+                if (mst[i].Priority > max)
                 {
-                    max = mst[i].Weight;
+                    max = mst[i].Priority;
                     ind = i;
                 }
             }
@@ -51,12 +51,8 @@ namespace ImageQuantization
 
         public Edge removeEdge(Edge e)
         {
-            Edge e2 = new Edge();
-            e2.src = e.src;
-            e2.dst = e.dst;
-
-            e2.Weight = -1;
-            return e2;
+            return new Edge(e.vert,e.parant,-1);
+ 
         }
 
         public List<List<int>> getClusters(List<int> vertecies,List<Edge> mst)
@@ -74,10 +70,10 @@ namespace ImageQuantization
 
             for (int i = 0; i < mst.Count; i++)
             {
-                if (mst[i].Weight != -1)
+                if (mst[i].Priority != -1)
                 {
-                    adj[mst[i].src].Add(mst[i].dst);
-                    adj[mst[i].dst].Add(mst[i].src);
+                    adj[mst[i].vert].Add(mst[i].parant);
+                    adj[mst[i].parant].Add(mst[i].vert);
                 }
             }
 

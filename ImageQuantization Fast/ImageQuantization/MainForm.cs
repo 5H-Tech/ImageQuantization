@@ -48,7 +48,7 @@ namespace ImageQuantization
 
             MessageBox.Show("Distinct colors= " + im.noColors + "\nTotal weight= " + im.totalWahit);
 
-            // ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
+             ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
             im = null;
         }
@@ -75,6 +75,29 @@ namespace ImageQuantization
         private void label5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            double sigma = double.Parse(txtGaussSigma.Text);
+            int maskSize = (int)nudMaskSize.Value;
+
+            //creating an object form the imge class 
+            Stopwatch stopwatch = new Stopwatch();
+            Image im = new Image(ImageMatrix);
+            stopwatch.Start();
+         
+            ImageMatrix = im.autoClustring();
+
+            stopwatch.Stop();
+            RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0 + " Sec";
+
+
+            MessageBox.Show("Distinct colors= " + im.noColors + "\nTotal weight= " + im.totalWahit);
+
+            ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
+            ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
+            im = null;
         }
     }
 }

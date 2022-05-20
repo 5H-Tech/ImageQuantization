@@ -19,12 +19,14 @@ namespace ImageQuantization
         public Dictionary<int,int> generatePalette(List<int> dis,List<Edge> mst, int k)
         {
             TreeEdges = mst;
+           // MessageBox.Show(mst.Count.ToString());
             int x = k;
             int ind;
             while (x > 1)
             {
                 ind = getInxMaxEdge(TreeEdges);
-                mst[ind] = removeEdge(TreeEdges[ind]);
+                if(ind != 0)
+                     TreeEdges[ind] = removeEdge(TreeEdges[ind]);
                 x--;
             }
             List<List<int>> c = getClusters(dis, TreeEdges);

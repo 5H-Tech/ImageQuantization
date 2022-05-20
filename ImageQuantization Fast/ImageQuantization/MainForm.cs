@@ -41,10 +41,11 @@ namespace ImageQuantization
             stopwatch.Start();
 
             ImageMatrix = im.quintize(int.Parse(noClusters.Text));
+            
 
             stopwatch.Stop();
             RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0 + " Sec";
-
+            ClusteringClass.fillPalete(listView1);
 
             MessageBox.Show("Distinct colors= " + im.noColors + "\nTotal weight= " + im.totalWahit);
 
@@ -91,7 +92,7 @@ namespace ImageQuantization
 
             stopwatch.Stop();
             RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0 + " Sec";
-
+            ClusteringClass.fillPalete(listView1);
 
             MessageBox.Show("Distinct colors= " + im.noColors + "\nTotal weight= " + im.totalWahit);
 

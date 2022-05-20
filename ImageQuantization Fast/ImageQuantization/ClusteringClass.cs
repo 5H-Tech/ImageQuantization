@@ -139,5 +139,16 @@ namespace ImageQuantization
                 }
             }
         }
+        public static void fillPalete(ListView list)
+        {
+            ListViewItem listItem;
+            foreach(var p in palate)
+            {
+                
+                listItem = new ListViewItem(p.Key.ToString());
+                listItem.SubItems.Add(p.Value.ToString());
+                list.Items.Add(listItem);
+            }
+        }
     }
 }

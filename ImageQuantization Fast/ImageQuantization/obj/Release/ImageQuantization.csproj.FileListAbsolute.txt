@@ -1,0 +1,12 @@
+C:\Users\Hady Ahmed\Desktop\Draft\Image-Quantization-Project-master\Image Processing\Image Processing\bin\Release\Image Processing.exe.config
+C:\Users\Hady Ahmed\Desktop\Draft\Image-Quantization-Project-master\Image Processing\Image Processing\bin\Release\Image Processing.exe
+C:\Users\Hady Ahmed\Desktop\Draft\Image-Quantization-Project-master\Image Processing\Image Processing\bin\Release\Image Processing.pdb
+C:\Users\Hady Ahmed\Desktop\Draft\Image-Quantization-Project-master\Image Processing\Image Processing\obj\Release\ImageQuantization.csprojResolveAssemblyReference.cache
+C:\Users\Hady Ahmed\Desktop\Draft\Image-Quantization-Project-master\Image Processing\Image Processing\obj\Release\ImageQuantization.MainForm.resources
+C:\Users\Hady Ahmed\Desktop\Draft\Image-Quantization-Project-master\Image Processing\Image Processing\obj\Release\ImageQuantization.Properties.Resources.resources
+C:\Users\Hady Ahmed\Desktop\Draft\Image-Quantization-Project-master\Image Processing\Image Processing\obj\Release\ImageQuantization.csproj.GenerateResource.Cache
+C:\Users\Hady Ahmed\Desktop\Draft\Image-Quantization-Project-master\Image Processing\Image Processing\obj\Release\Image Processing.exe
+C:\Users\Hady Ahmed\Desktop\Draft\Image-Quantization-Project-master\Image Processing\Image Processing\obj\Release\Image Processing.pdb
+C:\Users\Hady Ahmed\Desktop\Draft\Image-Quantization-Project-master\Image Processing\ImageQuantization\bin\Release\Image Processing.exe.config
+C:\Users\Hady Ahmed\Desktop\Draft\Image-Quantization-Project-master\Image Processing\ImageQuantization\obj\Release\Image Processing.exe
+C:\Users\Hady Ahmed\Desktop\Draft\Image-Quantization-Project-master\Image Processing\ImageQuantization\obj\Release\Image Processing.pdb

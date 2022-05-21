@@ -1,11 +1,14 @@
+﻿using ImageQuantization;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
-using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace ImageQuantization
 {
@@ -16,11 +19,41 @@ namespace ImageQuantization
             InitializeComponent();
         }
 
+
         RGBPixel[,] ImageMatrix;
+
+        private void btnGaussSmooth_Click(object sender, EventArgs e)
+        {
+            double sigma = double.Parse(txtGaussSigma.Text);
+            int maskSize = (int)nudMaskSize.Value;
+
+            //creating an object form the imge class 
+            Stopwatch stopwatch = new Stopwatch();
+            Image im = new Image(ImageMatrix);
+            stopwatch.Start();
+
+            ImageMatrix = im.quantize(int.Parse(noClusters.Text));
+
+
+            stopwatch.Stop();
+            RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0 + " Sec";
+            ClusteringClass.fillPalette(listView1);
+
+
+            distincet_txt.Text = im.noColors.ToString();
+            mst_sum_txt.Text = im.totalWeight.ToString();
+            clusters_no_txt.Text = "Same";
+
+            ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
+            ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
+            im = null;
+        }
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            //image filters
+            openFileDialog1.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 //Open the browsed image and display it
@@ -32,7 +65,8 @@ namespace ImageQuantization
             txtHeight.Text = ImageOperations.GetHeight(ImageMatrix).ToString();
         }
 
-        private void btnGaussSmooth_Click(object sender, EventArgs e)
+
+        private void button1_Click(object sender, EventArgs e)
         {
             double sigma = double.Parse(txtGaussSigma.Text);
             int maskSize = (int)nudMaskSize.Value;
@@ -41,23 +75,20 @@ namespace ImageQuantization
             Stopwatch stopwatch = new Stopwatch();
             Image im = new Image(ImageMatrix);
             stopwatch.Start();
-            int c = im.getDistinctColors();
-            float f = im.getMSTsum();
-            ImageMatrix = im.makeCluster(int.Parse(noClusters.Text));
+
+            ImageMatrix = im.autoClustering();
+
             stopwatch.Stop();
-            RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0;
+            RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0 + " Sec";
+            ClusteringClass.fillPalette(listView1);
 
+            distincet_txt.Text = im.noColors.ToString();
+            mst_sum_txt.Text = im.totalWeight.ToString();
+            clusters_no_txt.Text = im.k.ToString();
 
-            MessageBox.Show("Distinct colors= " + c+ "\nTotal weight= " +f);
-            
             ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
             im = null;
         }
-
-
-
-
-        
     }
 }

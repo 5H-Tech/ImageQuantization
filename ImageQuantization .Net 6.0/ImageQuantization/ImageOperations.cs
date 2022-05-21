@@ -24,20 +24,7 @@ namespace ImageQuantization
         public double red, green, blue;
     }
    
-    //class VertexParent : FastPriorityQueueNode
-    //{
-    //    // 
-    //    public VertexParent()
-    //    { }
-    //    public VertexParent(int vertex, int? parent)
-    //    {
-    //        V = vertex;
-    //        P = parent;
-    //    }
-    //    public int V { get; set; }          // current vertix
-    //    public int? P { get; set; }         // parent vertix
-
-    //}
+    
     
   
     /// <summary>

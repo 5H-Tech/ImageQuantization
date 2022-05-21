@@ -52,6 +52,12 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.mst_sum_txt = new System.Windows.Forms.TextBox();
+            this.distincet_txt = new System.Windows.Forms.TextBox();
+            this.clusters_no_txt = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -88,6 +94,7 @@
             // 
             this.RunningTime.Location = new System.Drawing.Point(785, 466);
             this.RunningTime.Name = "RunningTime";
+            this.RunningTime.ReadOnly = true;
             this.RunningTime.Size = new System.Drawing.Size(100, 20);
             this.RunningTime.TabIndex = 53;
             // 
@@ -167,7 +174,6 @@
             this.txtWidth.ReadOnly = true;
             this.txtWidth.Size = new System.Drawing.Size(57, 23);
             this.txtWidth.TabIndex = 47;
-            this.txtWidth.TextChanged += new System.EventHandler(this.txtWidth_TextChanged);
             // 
             // nudMaskSize
             // 
@@ -257,7 +263,6 @@
             this.txtHeight.ReadOnly = true;
             this.txtHeight.Size = new System.Drawing.Size(57, 23);
             this.txtHeight.TabIndex = 44;
-            this.txtHeight.TextChanged += new System.EventHandler(this.txtHeight_TextChanged);
             // 
             // label1
             // 
@@ -287,9 +292,9 @@
             this.columnHeader2});
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(9, 386);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(203, 111);
+            this.listView1.Size = new System.Drawing.Size(203, 167);
             this.listView1.TabIndex = 58;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -297,18 +302,75 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Primary color";
-            this.columnHeader1.Width = 120;
+            this.columnHeader1.Width = 93;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Secondary color";
             this.columnHeader2.Width = 120;
             // 
+            // mst_sum_txt
+            // 
+            this.mst_sum_txt.Location = new System.Drawing.Point(341, 533);
+            this.mst_sum_txt.Name = "mst_sum_txt";
+            this.mst_sum_txt.ReadOnly = true;
+            this.mst_sum_txt.Size = new System.Drawing.Size(100, 20);
+            this.mst_sum_txt.TabIndex = 59;
+            // 
+            // distincet_txt
+            // 
+            this.distincet_txt.Location = new System.Drawing.Point(503, 533);
+            this.distincet_txt.Name = "distincet_txt";
+            this.distincet_txt.ReadOnly = true;
+            this.distincet_txt.Size = new System.Drawing.Size(100, 20);
+            this.distincet_txt.TabIndex = 60;
+            // 
+            // clusters_no_txt
+            // 
+            this.clusters_no_txt.Location = new System.Drawing.Point(669, 533);
+            this.clusters_no_txt.Name = "clusters_no_txt";
+            this.clusters_no_txt.ReadOnly = true;
+            this.clusters_no_txt.Size = new System.Drawing.Size(100, 20);
+            this.clusters_no_txt.TabIndex = 61;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(358, 517);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(54, 13);
+            this.label9.TabIndex = 62;
+            this.label9.Text = "MST Sum";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(513, 517);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(90, 13);
+            this.label10.TabIndex = 63;
+            this.label10.Text = "# Distincet Colors";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(697, 517);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 13);
+            this.label11.TabIndex = 64;
+            this.label11.Text = "# Clusters";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(904, 500);
+            this.ClientSize = new System.Drawing.Size(909, 565);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.clusters_no_txt);
+            this.Controls.Add(this.distincet_txt);
+            this.Controls.Add(this.mst_sum_txt);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label8);
@@ -367,5 +429,11 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.TextBox mst_sum_txt;
+        private System.Windows.Forms.TextBox distincet_txt;
+        private System.Windows.Forms.TextBox clusters_no_txt;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }

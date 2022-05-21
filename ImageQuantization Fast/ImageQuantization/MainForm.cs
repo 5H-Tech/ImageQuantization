@@ -19,15 +19,7 @@ namespace ImageQuantization
             InitializeComponent();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void txtWidth_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         RGBPixel[,] ImageMatrix;
 
         private void btnGaussSmooth_Click(object sender, EventArgs e)
@@ -47,7 +39,10 @@ namespace ImageQuantization
             RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0 + " Sec";
             ClusteringClass.fillPalette(listView1);
 
-            MessageBox.Show("Distinct colors= " + im.noColors + "\nTotal weight= " + im.totalWeight);
+
+            distincet_txt.Text = im.noColors.ToString();
+            mst_sum_txt.Text = im.totalWeight.ToString();
+            clusters_no_txt.Text = "Same";
 
              ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
@@ -70,16 +65,7 @@ namespace ImageQuantization
             txtHeight.Text = ImageOperations.GetHeight(ImageMatrix).ToString();
         }
 
-        private void txtHeight_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
+    
         private void button1_Click(object sender, EventArgs e)
         {
             double sigma = double.Parse(txtGaussSigma.Text);
@@ -91,12 +77,14 @@ namespace ImageQuantization
             stopwatch.Start();
          
             ImageMatrix = im.autoClustering();
-
+            
             stopwatch.Stop();
             RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0 + " Sec";
             ClusteringClass.fillPalette(listView1);
 
-            MessageBox.Show("Distinct colors= " + im.noColors + "\nTotal weight= " + im.totalWeight);
+            distincet_txt.Text = im.noColors.ToString();
+            mst_sum_txt.Text = im.totalWeight.ToString();
+            clusters_no_txt.Text = im.k.ToString();
 
             ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);

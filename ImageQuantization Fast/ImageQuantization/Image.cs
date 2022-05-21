@@ -37,6 +37,7 @@ namespace ImageQuantization
         List<Edge> minSpanningTreeEdges = new List<Edge>();
         public float totalWeight = 0;
         public int noColors = 0;
+        public int k = 0;
 
         public Image(RGBPixel[,] ImagePixels)
         {
@@ -147,7 +148,8 @@ namespace ImageQuantization
                 oldStv = newStv;
 
             }
-            MessageBox.Show("num of clusters is "+(r + 1).ToString());
+            //MessageBox.Show("num of clusters is "+(r + 1).ToString());
+            k = r + 1;
             return r;
         }
 

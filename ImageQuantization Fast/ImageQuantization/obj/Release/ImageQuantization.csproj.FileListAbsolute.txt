@@ -32,3 +32,14 @@ C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQ
 C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.csproj.CoreCompileInputs.cache
 C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\Image Processing.exe
 C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\Image Processing.pdb
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\bin\Release\Image Processing.exe.config
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\bin\Release\Image Processing.exe
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\bin\Release\Image Processing.pdb
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.csproj.AssemblyReference.cache
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.csproj.SuggestedBindingRedirects.cache
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.MainForm.resources
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.Properties.Resources.resources
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.csproj.GenerateResource.cache
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.csproj.CoreCompileInputs.cache
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\Image Processing.exe
+C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\Image Processing.pdb

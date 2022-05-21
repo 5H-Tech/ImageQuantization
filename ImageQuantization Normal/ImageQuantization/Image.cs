@@ -7,32 +7,25 @@ using System.Drawing.Imaging;
 using System.Linq;
 using Priority_Queue;
 namespace ImageQuantization
-{
-
-    public struct Edge
+{ 
+    class Edge : FastPriorityQueueNode
     {
-        public int src;      // source node
-        public int dst;      // destination node
-        public float Weight;  // weight of edge
+        public int vert;
+        public int parent;
         
-    }
-    class Vertex : FastPriorityQueueNode
-    {
-
-        /// <summary>
-        /// it is a class carry the node and it's parnt node
-        /// extind the Fast priority Queue so can be used as node in the perouty quee
-        /// </summary>
-        public Vertex()
-        { }
-        public Vertex(int vertex, int? parent)
+        public Edge(int vertex, int parent)
         {
-            vert = vertex;
-            parant = parent;
+            this.vert = vertex;
+            this.parent = parent;
         }
-        public int vert { get; set; }          // current vertix
-        public int? parant { get; set; }         // parent vertix
+        public Edge(int vertex, int parent,float weight)
+        {
+            this.vert = vertex;
+            this.parent = parent;
+            this.Priority = weight;
 
+        }
+ 
     }
     class Image
     {
@@ -42,6 +35,9 @@ namespace ImageQuantization
         RGBPixel[,] aimImage;
         List<int> listOfDistinct = new List<int>();
         List<Edge> minSpanningTreeEdges = new List<Edge>();
+        public float totalWeight = 0;
+        public int noColors = 0;
+        public int k = 0;
 
         public Image(RGBPixel[,] ImagePixels)
         {
@@ -51,10 +47,7 @@ namespace ImageQuantization
           
         }
 
-       
-
-
-        public int getDistinctColors()
+        public void getDistinctColors()
         {
 
             HashSet<int> distinctSet = new HashSet<int>();
@@ -67,64 +60,41 @@ namespace ImageQuantization
                 }
             }
             listOfDistinct = distinctSet.ToList();
-            return listOfDistinct.Count;
+            noColors = listOfDistinct.Count;
         }
-
-       
-
 
         private void buildingMST()
         {
-            //it is the fast Priorty queue (linked Lib)
-            FastPriorityQueue<Vertex> q = new FastPriorityQueue<Vertex>(listOfDistinct.Count);
-
-            //intializing the the queue values by infnity with parent nodes set to null
+            FastPriorityQueue<Edge> fQueue = new FastPriorityQueue<Edge>(listOfDistinct.Count);
+            //All the edges are enqueued inside fQueue
+            //Each edge takes the current vertex of "listOfDistinct" with parent set to -1
+            //Edge's weight is set to infinity
             for (int i = 0; i < listOfDistinct.Count; i++)
-                q.Enqueue(new Vertex(listOfDistinct[i], null), int.MaxValue);
+                fQueue.Enqueue(new Edge(listOfDistinct[i], -1), int.MaxValue);
 
             float tmp;
-            while (q.Count != 0)
+            while (fQueue.Count != 0) //if the queue isn't empty
             {
-                Vertex Top = q.Dequeue();
-               
-
-                if (Top.parant != null)       //if this not the root node 
+                Edge front = fQueue.Dequeue(); //the queue's front is dequeued
+                if (front.parent != -1) //if the front is not the root
                 {
-                    // we will take the top of the queue wher the smollest 
-                    // edge whaite 
-                    Edge E;
-                    E.src = Top.vert;
-                    E.dst = (int)(Top.parant);
-                    E.Weight = (float)(Top.Priority);
-                    minSpanningTreeEdges.Add(E);
+                    totalWeight += front.Priority;
+                    minSpanningTreeEdges.Add(front);
                 }
-                //relaxing the edges 
-                foreach (var unit in q)
+                foreach (var e in fQueue) //each vertex inside the queue except front
                 {
-                    // @ when this loop done at firest time 
-                    // the root node will be the parant off all nodes 
-                    // and will the nearst node to the root will be in the top of the queue
-                    // in the next iteration we will take the nearst node to the root and do the same then pop it form the q and so on...
-                    tmp = (float)getDistanceClass.getEculideanDistance(unit, Top);
-                    if (tmp < unit.Priority)
+                    tmp = (float)getDistanceClass.getEculideanDistance(e, front);
+                    if (tmp < e.Priority)
                     {
-                        unit.parant = Top.vert;
-                        q.UpdatePriority(unit, tmp);
+                        e.parent=(front.vert); //setting the parent of e to front's vert
+                        fQueue.UpdatePriority(e, tmp); //Updating queue
                     }
                 }
             }
+            
         }
 
-        public float getMSTsum()
-        {
-            //its just getting the mst sum for printing 
-            buildingMST();
-            float weight = 0;
-            foreach (var item in minSpanningTreeEdges)
-                weight = weight + item.Weight;
-            return weight;
-        }
-
+        // MessageBox.Show(minSpanningTreeEdges.Count.ToString());
         public RGBPixel[,] makeCluster(int k)
         {
             Dictionary<int,int> p = cluster.generatePalette(listOfDistinct, minSpanningTreeEdges, k);
@@ -133,91 +103,98 @@ namespace ImageQuantization
             return y;
         }
 
-       
 
 
-        /*public void getK(List<Edge> mst)
+        public int getK(List<Edge> temp)
         {
-            int r = 0;
-            double oldStv=0;
-            double newStv=0;
-            double stv = 0;
-            double mean = 0;
-            List<float> tmp = new List<float>();
-            
-            for (int i = 0; i < mst.Count; i++)
+            List<Edge> auto = new List<Edge>();
+
+            foreach (Edge e in temp)
             {
-                tmp.Add(mst[i].Weight);
+                auto.Add(e);
             }
-            tmp.Sort();
-           
-            do
+            int r = 0;
+            double oldStv = 0;
+            double newStv = 0;
+            double mean = 0;
+    
+
+            oldStv = standardDeviation(auto);
+            mean = (double)getMean(auto);
+
+            while (auto.Count > 0)
             {
-
-                stv = standardDeviation(tmp);
-                mean = getMean(tmp);
-                oldStv = stv;
-
                 double max = 0;
                 int index = 0;
-                for (int j = 0; j < tmp.Count; j++)
+              
+                for (int j = 0; j < auto.Count; j++)
                 {
-                    if(Math.Abs(tmp[j]-mean)>max)
+                    if (Math.Abs(auto[j].Priority - mean) > max)
                     {
-                        max =tmp[j];
+                        max = Math.Abs(auto[j].Priority - mean);
                         index = j;
                     }
                 }
-                    tmp.RemoveAt(index);
-                    r += 2;
-                    stv = standardDeviation(tmp);   
-                    mean = getMean(tmp);
-                    newStv = stv;
-                
-            } while (oldStv - newStv > 0.0001 && tmp.Count>1);
-            MessageBox.Show(r.ToString() );
-        }*/
+                auto.RemoveAt(index);
+                r += 1;
+                newStv = standardDeviation(auto);
+                mean = (double)getMean(auto);
+              
+              
+                if (Math.Abs(oldStv - newStv) < 0.0001)
+                {
+                    break;
+                }
+                oldStv = newStv;
 
-       
+            }
+            //MessageBox.Show("num of clusters is "+(r + 1).ToString());
+            k = r + 1;
+            return r;
+        }
 
 
-        public double standardDeviation(List<float> tmp)
+        public double standardDeviation(List<Edge> tmp)
         {
             double result = 0;
             double sum = 0;
-
-
-
             double mean = getMean(tmp);
             for (int i = 0; i < tmp.Count; i++)
             {
-                sum += (Math.Pow((tmp[i] - mean),2));
+                sum += (Math.Pow((tmp[i].Priority - mean),2));
             }
-            sum = sum/tmp.Count;
-                
-                result = Math.Sqrt(sum);
-
-
-
+            sum = sum/(tmp.Count-1);
+            result = Math.Sqrt(sum);
             return result;
         }
 
-        public double getMean(List<float> tmp)
+        public double getMean(List<Edge> tmp)
         {
             double result = 0;
-
-
             for (int i = 0; i < tmp.Count; i++)
             {
-                result += tmp[i];
+                result += tmp[i].Priority;
             }
-            result =result/ tmp.Count();
-
+            result =result/ (tmp.Count()-1);
             return result;
         }
 
 
+        public RGBPixel[,] quantize(int k)
+        {
+            getDistinctColors();
+            buildingMST();
+            return makeCluster(k);
+        }
 
+        public RGBPixel[,] autoClustering()
+        {
+         
+            getDistinctColors();
+            buildingMST();         
+            int k = getK(minSpanningTreeEdges);
+            return makeCluster(k);
+        }
 
     }
 }

@@ -10,47 +10,40 @@ namespace ImageQuantization
     internal class ClusteringClass
     {
         List<Edge> TreeEdges = new List<Edge>();
-
-
         static Dictionary<int, List<int>> adj;
         static Dictionary<int, char> color;
         static List<List<int>> clusters;
-        static Dictionary<int, int> palate;
+        static Dictionary<int, int> palette;
         static int ind;
+
         public Dictionary<int,int> generatePalette(List<int> dis,List<Edge> mst, int k)
         {
             TreeEdges = mst;
+           // MessageBox.Show(mst.Count.ToString());
             int x = k;
             int ind;
-
             while (x > 1)
             {
-                ind = getMaxEdge(TreeEdges);
-                mst[ind] = removeEdge(TreeEdges[ind]);
+                ind = getInxMaxEdge(TreeEdges);
+                if(ind != 0)
+                     TreeEdges[ind] = removeEdge(TreeEdges[ind]);
                 x--;
             }
             List<List<int>> c = getClusters(dis, TreeEdges);
             getCentroid();
-
-            //for (int i = 0; i < palate.Count; i++)
-            //{
-            //    MessageBox.Show(palate[i].ToString());
-            //}
-
-            return palate;
+            return palette;
         }
 
-
-        public int getMaxEdge(List<Edge> mst)
+        public int getInxMaxEdge(List<Edge> mst)
         {
             int ind = 0;
             float max = 0;
 
             for (int i = 0; i < mst.Count; i++)
             {
-                if (mst[i].Weight > max)
+                if (mst[i].Priority > max)
                 {
-                    max = mst[i].Weight;
+                    max = mst[i].Priority;
                     ind = i;
                 }
             }
@@ -60,65 +53,45 @@ namespace ImageQuantization
 
         public Edge removeEdge(Edge e)
         {
-            Edge e2 = new Edge();
-            e2.src = e.src;
-            e2.dst = e.dst;
-
-            e2.Weight = -1;
-            return e2;
+            return new Edge(e.vert,e.parent,-1);
+ 
         }
 
-        public List<List<int>> getClusters(List<int> vertecies,List<Edge> mst)
+        public List<List<int>> getClusters(List<int> vertices, List<Edge> mst)
         {
-           
+
             adj = new Dictionary<int, List<int>>();
             color = new Dictionary<int, char>();
             clusters = new List<List<int>>();
             ind = -1;
-            for (int i = 0; i < vertecies.Count; i++)
+            for (int i = 0; i < vertices.Count; i++)
             {
-                color.Add(vertecies[i], 'w');
-                adj.Add(vertecies[i],new List<int>());
+                color.Add(vertices[i], 'w');
+                adj.Add(vertices[i], new List<int>());
             }
 
             for (int i = 0; i < mst.Count; i++)
             {
-                if (mst[i].Weight != -1)
+                if (mst[i].Priority != -1) //isn't a removed edge
                 {
-                    adj[mst[i].src].Add(mst[i].dst);
-                    adj[mst[i].dst].Add(mst[i].src);
+                    adj[mst[i].vert].Add(mst[i].parent);
+                    adj[mst[i].parent].Add(mst[i].vert);
                 }
             }
 
-
-            for (int i = 0; i < vertecies.Count ; i++)
+            for (int i = 0; i < vertices.Count; i++)
             {
-                if(color[vertecies[i]]=='w')
+                if (color[vertices[i]] == 'w')
                 {
                     ind++;
                     clusters.Add(new List<int>());
-                    Dfs(vertecies[i]);                
+                    Dfs(vertices[i]);
                 }
             }
 
-
-
-
-
-
-            //MessageBox.Show(clusters.Count.ToString());
-
-            //for (int i = 0; i < clusters.Count; i++)
-            //{
-            //    for (int j = 0; j < clusters[i].Count; j++)
-            //    {
-            //        MessageBox.Show(clusters[i][j].ToString());
-            //    }
-            //    MessageBox.Show("done");
-            //}
-
             return clusters;
         }
+
 
         public static void Dfs(int vertex)
         {
@@ -131,7 +104,6 @@ namespace ImageQuantization
                     Dfs(adj[vertex][j]);
                 }
             }
-           
             color[vertex] = 'b'; //explored
            
         }
@@ -139,33 +111,43 @@ namespace ImageQuantization
         public void getCentroid()
         {
             colorCodingClass codingClass = new colorCodingClass();
-            palate = new Dictionary<int, int>();
+            palette = new Dictionary<int, int>();
             for (int i = 0; i < clusters.Count; i++)
             {
-                int red = 0, gree = 0, blue = 0;
+                int red = 0, green = 0, blue = 0;
                 
                 for (int j = 0; j < clusters[i].Count; j++)
                 {
                     RGBPixel rGB =  codingClass.decodeColors(clusters[i][j]);
                     red += rGB.red;
-                    gree += rGB.green;
+                    green += rGB.green;
                     blue += rGB.blue;
                 }
                 red /= clusters[i].Count;
-                gree /= clusters[i].Count;
+                green /= clusters[i].Count;
                 blue /= clusters[i].Count;
 
                 RGBPixel p;
                 p.red = (byte)red;
-                p.green = (byte)gree;
+                p.green = (byte)green;
                 p.blue = (byte)blue;
 
                 int mean = codingClass.codeColors(p);
 
                 foreach (var l in clusters[i])
                 {
-                    palate.Add(l, mean);
+                    palette.Add(l, mean);
                 }
+            }
+        }
+        public static void fillPalette(ListView list)
+        {
+            ListViewItem listItem;
+            foreach(var p in palette)
+            {
+                listItem = new ListViewItem(p.Key.ToString());
+                listItem.SubItems.Add(p.Value.ToString());
+                list.Items.Add(listItem);
             }
         }
     }

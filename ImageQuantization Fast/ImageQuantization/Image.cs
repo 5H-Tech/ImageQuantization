@@ -115,7 +115,6 @@ namespace ImageQuantization
             int r = 0;
             double oldStv = 0;
             double newStv = 0;
-            double stv = 0;
             double mean = 0;
     
 

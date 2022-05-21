@@ -21,3 +21,14 @@ C:\Users\hadi 11\Documents\GitHub\ImageQuantization\ImageQuantization Fast\Image
 C:\Users\hadi 11\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.csproj.CoreCompileInputs.cache
 C:\Users\hadi 11\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\Image Processing.exe
 C:\Users\hadi 11\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\Image Processing.pdb
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\bin\Release\Image Processing.exe.config
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\bin\Release\Image Processing.exe
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\bin\Release\Image Processing.pdb
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.csproj.SuggestedBindingRedirects.cache
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.MainForm.resources
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.Properties.Resources.resources
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.csproj.GenerateResource.cache
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\ImageQuantization.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\Image Processing.exe
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Fast\ImageQuantization\obj\Release\Image Processing.pdb

@@ -11,17 +11,17 @@ namespace ImageQuantization
     class Edge : FastPriorityQueueNode
     {
         public int vert;
-        public int parant;
+        public int parent;
         
         public Edge(int vertex, int parent)
         {
             this.vert = vertex;
-            this.parant = parent;
+            this.parent = parent;
         }
         public Edge(int vertex, int parent,float weight)
         {
             this.vert = vertex;
-            this.parant = parent;
+            this.parent = parent;
             this.Priority = weight;
 
         }
@@ -35,7 +35,7 @@ namespace ImageQuantization
         RGBPixel[,] aimImage;
         List<int> listOfDistinct = new List<int>();
         List<Edge> minSpanningTreeEdges = new List<Edge>();
-        public float totalWahit = 0;
+        public float totalWeight = 0;
         public int noColors = 0;
 
         public Image(RGBPixel[,] ImagePixels)
@@ -65,35 +65,37 @@ namespace ImageQuantization
         private void buildingMST()
         {
             FastPriorityQueue<Edge> fQueue = new FastPriorityQueue<Edge>(listOfDistinct.Count);
+            //All the edges are enqueued inside fQueue
+            //Each edge takes the current vertex of "listOfDistinct" with parent set to -1
+            //Edge's weight is set to infinity
             for (int i = 0; i < listOfDistinct.Count; i++)
                 fQueue.Enqueue(new Edge(listOfDistinct[i], -1), int.MaxValue);
 
             float tmp;
-            while (fQueue.Count != 0)
+            while (fQueue.Count != 0) //if the queue isn't empty
             {
-                Edge front = fQueue.Dequeue();
-                if (front.parant != -1)
+                Edge front = fQueue.Dequeue(); //the queue's front is dequeued
+                if (front.parent != -1) //if the front is not the root
                 {
-                    totalWahit += front.Priority;
-                   
+                    totalWeight += front.Priority;
                     minSpanningTreeEdges.Add(front);
                 }
-                foreach (var v in fQueue)
+                foreach (var e in fQueue) //each vertex inside the queue except front
                 {
-                    tmp = (float)getDistanceClass.getEculideanDistance(v, front);
-                    if (tmp < v.Priority)
+                    tmp = (float)getDistanceClass.getEculideanDistance(e, front);
+                    if (tmp < e.Priority)
                     {
-                        v.parant=(front.vert);
-                        fQueue.UpdatePriority(v, tmp);
+                        e.parent=(front.vert); //setting the parent of e to front's vert
+                        fQueue.UpdatePriority(e, tmp); //Updating queue
                     }
                 }
             }
             
         }
 
+        // MessageBox.Show(minSpanningTreeEdges.Count.ToString());
         public RGBPixel[,] makeCluster(int k)
         {
-           // MessageBox.Show(minSpanningTreeEdges.Count.ToString());
             Dictionary<int,int> p = cluster.generatePalette(listOfDistinct, minSpanningTreeEdges, k);
             MappingClass = new MappingClass(p, aimImage);
             RGBPixel[,] y = MappingClass.map();
@@ -155,46 +157,36 @@ namespace ImageQuantization
         {
             double result = 0;
             double sum = 0;
-
-
-
             double mean = getMean(tmp);
             for (int i = 0; i < tmp.Count; i++)
             {
                 sum += (Math.Pow((tmp[i].Priority - mean),2));
             }
             sum = sum/(tmp.Count-1);
-                
-                result = Math.Sqrt(sum);
-
-
-
+            result = Math.Sqrt(sum);
             return result;
         }
 
         public double getMean(List<Edge> tmp)
         {
             double result = 0;
-
-
             for (int i = 0; i < tmp.Count; i++)
             {
                 result += tmp[i].Priority;
             }
             result =result/ (tmp.Count()-1);
-
             return result;
         }
 
 
-        public RGBPixel[,] quintize(int k)
+        public RGBPixel[,] quantize(int k)
         {
             getDistinctColors();
             buildingMST();
             return makeCluster(k);
         }
 
-        public RGBPixel[,] autoClustring()
+        public RGBPixel[,] autoClustering()
         {
          
             getDistinctColors();

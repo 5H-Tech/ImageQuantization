@@ -40,14 +40,14 @@ namespace ImageQuantization
             Image im = new Image(ImageMatrix);
             stopwatch.Start();
 
-            ImageMatrix = im.quintize(int.Parse(noClusters.Text));
+            ImageMatrix = im.quantize(int.Parse(noClusters.Text));
             
 
             stopwatch.Stop();
             RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0 + " Sec";
-            ClusteringClass.fillPalete(listView1);
+            ClusteringClass.fillPalette(listView1);
 
-            MessageBox.Show("Distinct colors= " + im.noColors + "\nTotal weight= " + im.totalWahit);
+            MessageBox.Show("Distinct colors= " + im.noColors + "\nTotal weight= " + im.totalWeight);
 
              ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
@@ -57,6 +57,8 @@ namespace ImageQuantization
         private void btnOpen_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            //image filters
+            openFileDialog1.Filter= "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 //Open the browsed image and display it
@@ -88,13 +90,13 @@ namespace ImageQuantization
             Image im = new Image(ImageMatrix);
             stopwatch.Start();
          
-            ImageMatrix = im.autoClustring();
+            ImageMatrix = im.autoClustering();
 
             stopwatch.Stop();
             RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0 + " Sec";
-            ClusteringClass.fillPalete(listView1);
+            ClusteringClass.fillPalette(listView1);
 
-            MessageBox.Show("Distinct colors= " + im.noColors + "\nTotal weight= " + im.totalWahit);
+            MessageBox.Show("Distinct colors= " + im.noColors + "\nTotal weight= " + im.totalWeight);
 
             ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);

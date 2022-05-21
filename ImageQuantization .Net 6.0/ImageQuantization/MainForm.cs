@@ -90,5 +90,15 @@ namespace ImageQuantization
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
             im = null;
         }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

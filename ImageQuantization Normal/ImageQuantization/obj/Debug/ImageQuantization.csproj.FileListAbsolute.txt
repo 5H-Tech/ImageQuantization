@@ -74,3 +74,14 @@ C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Normal\
 C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\obj\Debug\ImageQuantization.csproj.CoreCompileInputs.cache
 C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\obj\Debug\ImageQuantization.exe
 C:\Users\Hady Ahmed\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\obj\Debug\ImageQuantization.pdb
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\bin\Debug\ImageQuantization.exe.config
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\bin\Debug\ImageQuantization.exe
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\bin\Debug\ImageQuantization.pdb
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\obj\Debug\ImageQuantization.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\obj\Debug\ImageQuantization.csproj.SuggestedBindingRedirects.cache
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\obj\Debug\ImageQuantization.MainForm.resources
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\obj\Debug\ImageQuantization.Properties.Resources.resources
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\obj\Debug\ImageQuantization.csproj.GenerateResource.cache
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\obj\Debug\ImageQuantization.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\obj\Debug\ImageQuantization.exe
+C:\Users\Lenovo\Documents\GitHub\ImageQuantization\ImageQuantization Normal\ImageQuantization\obj\Debug\ImageQuantization.pdb

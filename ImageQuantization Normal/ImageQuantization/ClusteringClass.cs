@@ -142,6 +142,7 @@ namespace ImageQuantization
         }
         public static void fillPalette(ListView list)
         {
+            list.Items.Clear();
             ListViewItem listItem;
             foreach(var p in palette)
             {

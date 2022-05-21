@@ -98,9 +98,9 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(515, 515);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(90, 13);
+            this.label10.Size = new System.Drawing.Size(84, 13);
             this.label10.TabIndex = 89;
-            this.label10.Text = "# Distincet Colors";
+            this.label10.Text = "# Distinct Colors";
             // 
             // pictureBox1
             // 

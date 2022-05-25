@@ -49,15 +49,19 @@
             this.txtHeight = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mst_sum_txt = new System.Windows.Forms.TextBox();
             this.distincet_txt = new System.Windows.Forms.TextBox();
             this.clusters_no_txt = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -88,7 +92,7 @@
             // noClusters
             // 
             this.noClusters.Location = new System.Drawing.Point(1047, 522);
-            this.noClusters.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.noClusters.Margin = new System.Windows.Forms.Padding(4);
             this.noClusters.Name = "noClusters";
             this.noClusters.Size = new System.Drawing.Size(132, 22);
             this.noClusters.TabIndex = 54;
@@ -96,7 +100,7 @@
             // RunningTime
             // 
             this.RunningTime.Location = new System.Drawing.Point(1047, 574);
-            this.RunningTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RunningTime.Margin = new System.Windows.Forms.Padding(4);
             this.RunningTime.Name = "RunningTime";
             this.RunningTime.ReadOnly = true;
             this.RunningTime.Size = new System.Drawing.Size(132, 22);
@@ -108,7 +112,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Location = new System.Drawing.Point(624, 12);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(560, 456);
             this.panel2.TabIndex = 52;
@@ -116,7 +120,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Location = new System.Drawing.Point(4, 4);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(549, 443);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -130,7 +134,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(583, 456);
             this.panel1.TabIndex = 51;
@@ -138,7 +142,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(4, 4);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(569, 443);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -149,7 +153,7 @@
             // 
             this.txtGaussSigma.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGaussSigma.Location = new System.Drawing.Point(909, 571);
-            this.txtGaussSigma.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtGaussSigma.Margin = new System.Windows.Forms.Padding(4);
             this.txtGaussSigma.Name = "txtGaussSigma";
             this.txtGaussSigma.Size = new System.Drawing.Size(75, 27);
             this.txtGaussSigma.TabIndex = 50;
@@ -181,7 +185,7 @@
             // 
             this.txtWidth.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWidth.Location = new System.Drawing.Point(371, 524);
-            this.txtWidth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtWidth.Margin = new System.Windows.Forms.Padding(4);
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.ReadOnly = true;
             this.txtWidth.Size = new System.Drawing.Size(75, 27);
@@ -196,7 +200,7 @@
             0,
             0});
             this.nudMaskSize.Location = new System.Drawing.Point(909, 524);
-            this.nudMaskSize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nudMaskSize.Margin = new System.Windows.Forms.Padding(4);
             this.nudMaskSize.Maximum = new decimal(new int[] {
             99,
             0,
@@ -242,7 +246,7 @@
             // 
             this.btnGaussSmooth.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGaussSmooth.Location = new System.Drawing.Point(624, 523);
-            this.btnGaussSmooth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGaussSmooth.Margin = new System.Windows.Forms.Padding(4);
             this.btnGaussSmooth.Name = "btnGaussSmooth";
             this.btnGaussSmooth.Size = new System.Drawing.Size(109, 76);
             this.btnGaussSmooth.TabIndex = 42;
@@ -265,7 +269,7 @@
             // 
             this.btnOpen.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpen.Location = new System.Drawing.Point(476, 523);
-            this.btnOpen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOpen.Margin = new System.Windows.Forms.Padding(4);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(109, 76);
             this.btnOpen.TabIndex = 39;
@@ -277,7 +281,7 @@
             // 
             this.txtHeight.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHeight.Location = new System.Drawing.Point(371, 571);
-            this.txtHeight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtHeight.Margin = new System.Windows.Forms.Padding(4);
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.ReadOnly = true;
             this.txtHeight.Size = new System.Drawing.Size(75, 27);
@@ -298,7 +302,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(508, 481);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(195, 37);
             this.button1.TabIndex = 57;
@@ -306,34 +310,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 475);
-            this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(269, 205);
-            this.listView1.TabIndex = 58;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Primary color";
-            this.columnHeader1.Width = 93;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Secondary color";
-            this.columnHeader2.Width = 120;
-            // 
             // mst_sum_txt
             // 
             this.mst_sum_txt.Location = new System.Drawing.Point(455, 656);
-            this.mst_sum_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mst_sum_txt.Margin = new System.Windows.Forms.Padding(4);
             this.mst_sum_txt.Name = "mst_sum_txt";
             this.mst_sum_txt.ReadOnly = true;
             this.mst_sum_txt.Size = new System.Drawing.Size(132, 22);
@@ -342,7 +322,7 @@
             // distincet_txt
             // 
             this.distincet_txt.Location = new System.Drawing.Point(671, 656);
-            this.distincet_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.distincet_txt.Margin = new System.Windows.Forms.Padding(4);
             this.distincet_txt.Name = "distincet_txt";
             this.distincet_txt.ReadOnly = true;
             this.distincet_txt.Size = new System.Drawing.Size(132, 22);
@@ -351,7 +331,7 @@
             // clusters_no_txt
             // 
             this.clusters_no_txt.Location = new System.Drawing.Point(892, 656);
-            this.clusters_no_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.clusters_no_txt.Margin = new System.Windows.Forms.Padding(4);
             this.clusters_no_txt.Name = "clusters_no_txt";
             this.clusters_no_txt.ReadOnly = true;
             this.clusters_no_txt.Size = new System.Drawing.Size(132, 22);
@@ -387,6 +367,55 @@
             this.label11.TabIndex = 64;
             this.label11.Text = "# Clusters";
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader7,
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(12, 475);
+            this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(269, 205);
+            this.listView1.TabIndex = 58;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "P.R";
+            this.columnHeader7.Width = 40;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "P.G";
+            this.columnHeader1.Width = 40;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "P.B";
+            this.columnHeader2.Width = 40;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "S.R";
+            this.columnHeader3.Width = 30;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "S.G";
+            this.columnHeader4.Width = 30;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "S.B";
+            this.columnHeader5.Width = 30;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -418,7 +447,7 @@
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.txtHeight);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.panel2.ResumeLayout(false);
@@ -454,14 +483,18 @@
         private System.Windows.Forms.TextBox txtHeight;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.TextBox mst_sum_txt;
         private System.Windows.Forms.TextBox distincet_txt;
         private System.Windows.Forms.TextBox clusters_no_txt;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

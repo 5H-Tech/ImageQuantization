@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -142,12 +143,30 @@ namespace ImageQuantization
         }
         public static void fillPalette(ListView list)
         {
+            colorCodingClass c = new colorCodingClass();
+            String red,blue,green;
+            String keyRed, keyBlue, keyGreen;
             list.Items.Clear();
             ListViewItem listItem;
-            foreach(var p in palette)
+            foreach (var p in palette)
             {
-                listItem = new ListViewItem(p.Key.ToString());
-                listItem.SubItems.Add(p.Value.ToString());
+                RGBPixel newColor=c.decodeColors(p.Value);
+                red = newColor.red.ToString();
+                green = newColor.green.ToString();
+                blue = newColor.blue.ToString();
+
+                RGBPixel KeyColor = c.decodeColors(p.Key);
+                keyRed = KeyColor.red.ToString();
+                keyGreen = KeyColor.green.ToString();
+                keyBlue = KeyColor.blue.ToString();
+                
+                listItem = new ListViewItem(keyRed);
+                listItem.SubItems.Add(keyGreen);
+                listItem.SubItems.Add(keyBlue);
+                listItem.SubItems.Add(red);
+                listItem.SubItems.Add(green);
+                listItem.SubItems.Add(blue);
+
                 list.Items.Add(listItem);
             }
         }

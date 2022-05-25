@@ -21,7 +21,7 @@ namespace ImageQuantization
             float Y = dstRGB.green - srcRGB.green;
             float Z = dstRGB.blue - srcRGB.blue;
             res = Math.Sqrt((X * X) + (Y * Y) + (Z * Z));
-            return res;
+            return (float)res;
         }
     }
 }

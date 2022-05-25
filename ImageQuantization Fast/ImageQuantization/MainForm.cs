@@ -39,10 +39,12 @@ namespace ImageQuantization
             stopwatch.Stop();
             RunningTime.Text = "" + stopwatch.ElapsedMilliseconds / 1000.0 + " Sec";
             ClusteringClass.fillPalette(listView1);
+            /*double tmp = im.totalWeight;*/
 
+            double tmp = Math.Round(im.totalWeight, 1);
 
             distincet_txt.Text = im.noColors.ToString();
-            mst_sum_txt.Text = im.totalWeight.ToString();
+            mst_sum_txt.Text = tmp.ToString();
             clusters_no_txt.Text = "Same";
 
              //ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
@@ -89,7 +91,6 @@ namespace ImageQuantization
 
             ImageMatrix = ImageOperations.GaussianFilter1D(ImageMatrix, maskSize, sigma);
             ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
-            im = null;
         }
     }
 }

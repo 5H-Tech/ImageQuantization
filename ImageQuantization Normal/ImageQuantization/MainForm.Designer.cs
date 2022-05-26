@@ -30,14 +30,11 @@
         {
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label10 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.clusters_no_txt = new System.Windows.Forms.TextBox();
             this.distincet_txt = new System.Windows.Forms.TextBox();
             this.mst_sum_txt = new System.Windows.Forms.TextBox();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -58,6 +55,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnOpen = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -82,16 +86,6 @@
             this.label9.Size = new System.Drawing.Size(54, 13);
             this.label9.TabIndex = 88;
             this.label9.Text = "MST Sum";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Secondary color";
-            this.columnHeader2.Width = 120;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Primary color";
-            this.columnHeader1.Width = 93;
             // 
             // label10
             // 
@@ -134,20 +128,6 @@
             this.mst_sum_txt.ReadOnly = true;
             this.mst_sum_txt.Size = new System.Drawing.Size(100, 20);
             this.mst_sum_txt.TabIndex = 85;
-            // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(11, 384);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(203, 167);
-            this.listView1.TabIndex = 84;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // button1
             // 
@@ -360,18 +340,66 @@
             this.label1.TabIndex = 66;
             this.label1.Text = "Original Image";
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader7,
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(11, 389);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(203, 167);
+            this.listView1.TabIndex = 91;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "P.R";
+            this.columnHeader7.Width = 35;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "P.G";
+            this.columnHeader1.Width = 35;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "P.B";
+            this.columnHeader2.Width = 35;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "S.R";
+            this.columnHeader3.Width = 35;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "S.G";
+            this.columnHeader4.Width = 35;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "S.B";
+            this.columnHeader5.Width = 35;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(902, 564);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.clusters_no_txt);
             this.Controls.Add(this.distincet_txt);
             this.Controls.Add(this.mst_sum_txt);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -407,14 +435,11 @@
 
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox clusters_no_txt;
         private System.Windows.Forms.TextBox distincet_txt;
         private System.Windows.Forms.TextBox mst_sum_txt;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -435,5 +460,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

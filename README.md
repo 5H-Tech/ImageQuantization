@@ -1,5 +1,5 @@
 # ImageQuantization
-**This Project is alogratims curse final Project**
+**The final project for the algorithms course is this one**
 ## Team Members:
 |         Name  | GetHub |
 | ------------- | ------------- |

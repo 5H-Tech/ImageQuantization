@@ -1,9 +1,9 @@
 # ImageQuantization
 **The final project for the algorithms course is this one**
 ## Team Members:
-|         Name  | GetHub |
+|         Name  | GitHub |
 | ------------- | ------------- |
-| Hady Ehab rgaa  |[HodBossHod](https://github.com/HodBossHod)  |
+| Hadi Ehab Ragaa  |[HodBossHod](https://github.com/HodBossHod)  |
 | Hady Ahmed Abd-Elsalame  | [HadyAhmed00](https://github.com/HadyAhmed00)  |
 | Hady Atef saeed  | [hady-o](https://github.com/hady-o)  |
 ## We have used a linked library containing the implementation of Fast Priority Queue in order to use it in our MST. 
